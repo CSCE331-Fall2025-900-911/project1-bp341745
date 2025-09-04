@@ -1,0 +1,115 @@
+@font-face {
+    font-family: Audiowide;
+    src: url(fonts/Audiowide-Regular.ttf);
+}
+
+@font-face {
+    font-family: Orbitron;
+    src: url(fonts/Orbitron-VariableFont_wght.ttf);
+}
+
+@font-face {
+    font-family: Chakrapetch;
+    src: url(fonts/ChakraPetch-Regular.ttf);
+}
+
+
+/*LANDING PAGE*/
+
+header{
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: grey;
+}
+
+body{
+    margin: 0px 100px;
+    background: hsla(0, 0%, 0%, 0.893);
+}
+
+.navbar{
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.navbar ul{
+    list-style-type: none;
+    background-color: black;
+    padding: 0px;
+    margin: 0px;
+    overflow: hidden;
+}
+
+.navbar a{
+    color: white;
+    text-decoration: none;
+    padding: 30px;
+    display: block;
+    text-align: center;
+
+}
+
+.navbar li{
+    
+    float: left;
+    overflow: hidden;
+    font-size: large;
+    font-family: Audiowide;
+}
+
+.navbar a:hover{
+    background-color: grey;
+    /*More effects i want to add later:
+        font increase size animation;*/
+}
+
+.greeting{
+    margin-top: 75px;
+    color: white;
+    /*TODO: Animation of cursor texting|  */
+}
+
+.about-me-container{
+    display: flex;
+    margin-top: 100px;
+}
+
+.about-me-container img{
+    max-width: 300px;
+    max-height: 200px;
+    border-radius: 3rem;
+    margin: 0px 50px;
+}
+
+.about-me-container p{
+    padding: 17px;
+    display: inline-block;
+    background-color: rgb(86, 86, 86);
+    border-radius: 0.5rem;
+    color: white;
+}
+
+.paragraph-text{
+    font-family: Orbitron;
+}
+
+.about-me-interests-bubble-container{
+    margin-top: 75px;
+    color:white;
+}
+
+.interests-paragraph-container{
+    margin-top: 75px;
+    color:white
+}
+
+
+
+/*  PORTFOLIO PAGE*/
+
+.project-summary-container{
+    margin-top: 75px;
+    display: flex;
+}

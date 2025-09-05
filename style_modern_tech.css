@@ -14,7 +14,7 @@
 }
 
 
-/*LANDING PAGE*/
+/*ALL PAGES*/
 
 header{
     text-align: center;
@@ -24,9 +24,12 @@ header{
 }
 
 body{
-    margin: 0px 100px;
-    background: hsla(0, 0%, 0%, 0.893);
+    margin: 0px 200px;
+    background-image: linear-gradient(to bottom, hsl(0, 1%, 19%), rgb(7, 7, 7));
+    /* background-image: radial-gradient(circle at top left, rgb(78, 172, 122), rgb(23, 15, 130)); */
+
 }
+
 
 .navbar{
     margin-top: 50px;
@@ -65,10 +68,32 @@ body{
         font increase size animation;*/
 }
 
-.greeting{
+
+.section-header{
     margin-top: 75px;
+    font-size: larger;
+    font-family: Orbitron;
     color: white;
-    /*TODO: Animation of cursor texting|  */
+}
+
+.paragraph-text{
+    font-family: Chakrapetch;
+    padding: 17px;
+    display: inline-block;
+    max-height: 200px;
+    overflow: auto;
+    background-color: rgb(86, 86, 86);
+    border-radius: 0.5rem;
+    color: white;
+}
+
+/*ABOUT ME*/
+
+.about-me-header{
+    color: white;
+    font-family: Orbitron;
+    font-size: larger;
+    margin-top: 75px;
 }
 
 .about-me-container{
@@ -83,25 +108,15 @@ body{
     margin: 0px 50px;
 }
 
-.about-me-container p{
-    padding: 17px;
-    display: inline-block;
-    background-color: rgb(86, 86, 86);
-    border-radius: 0.5rem;
-    color: white;
-}
 
-.paragraph-text{
-    font-family: Orbitron;
-}
 
 .about-me-interests-bubble-container{
-    margin-top: 75px;
+    margin-top: 50px;
     color:white;
 }
 
 .interests-paragraph-container{
-    margin-top: 75px;
+    margin-top: 50px;
     color:white
 }
 
@@ -109,7 +124,28 @@ body{
 
 /*  PORTFOLIO PAGE*/
 
+
+
+.portfolio-summary-container{
+    margin-top: 75px;
+}
+
 .project-summary-container{
     margin-top: 75px;
     display: flex;
 }
+
+.project-summary-container img{
+    margin: 0px 50px;
+    border-radius: 1rem;
+    /*TODO: add hover event: enlarge image, glow, dilate size, link to project*/
+}
+
+
+/* QUALIFICATIONS PAGE*/
+
+
+.qualifications-summary-container{
+    margin-top: 75px;
+}
+

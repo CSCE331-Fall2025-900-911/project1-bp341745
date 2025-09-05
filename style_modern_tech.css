@@ -50,6 +50,8 @@ main {
   margin: 0px;
   overflow: hidden;
   border-radius: 0.5rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,2)
+
 }
 
 .navbar a {
@@ -89,6 +91,7 @@ main {
   background-color: rgb(86, 86, 86);
   border-radius: 0.5rem;
   color: white;
+  box-shadow: 0 4px 8px rgba(0,0,0,2)
 }
 
 /*ABOUT ME*/
@@ -106,10 +109,14 @@ main {
 }
 
 .about-me-container img {
+  object-fit: cover;
   max-width: 300px;
-  max-height: 200px;
-  border-radius: 3rem;
+  max-height: 300px;
+  border-radius: 50%;
+  border: 3px solid #ccc;
   margin: 0px 50px;
+  box-shadow: 0 4px 8px rgba(0,0,0,2)
+
 }
 
 .about-me-interests-bubble-container {
@@ -135,7 +142,8 @@ main {
 
 .project-summary-container img {
   margin: 0px 50px;
-  border-radius: 1rem;
+  border-radius: 2rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,2)
   /*TODO: add hover event: enlarge image, glow, dilate size, link to project*/
 }
 
@@ -173,4 +181,26 @@ main {
 .service-community-service-intro{
     padding: 0px 50px;
 }
+
+.service-content-container{
+  margin: 60px 50px ;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.service-content-container img{
+  width: 300px;
+  height: 300px;
+  margin-right: 30px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0,0,0,2)
+}
+
+
+
+
 

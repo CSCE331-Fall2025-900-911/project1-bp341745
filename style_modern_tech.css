@@ -116,6 +116,7 @@ main {
   border: 3px solid #ccc;
   margin: 0px 50px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 2);
+  user-select: none;
 }
 
 .about-me-interests-bubble-container {
@@ -129,7 +130,7 @@ main {
   filter: invert(1);
 } */
 
-.interests-paragraph-container {
+.about-me-interests-paragraph-container {
   margin-top: 50px;
   color: white;
 }
@@ -146,7 +147,7 @@ main {
   display: flex;
 }
 
-.portfolio-project-summary-container img {
+.portfolio-project-summary-container img,.portfolio-project-video {
   margin: 0px 50px;
   border-radius: 2rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 2);
@@ -159,12 +160,12 @@ main {
 }
 
 .portfolio-project-video{
-   margin: 0px 50px;
+    
 }
 
 /* QUALIFICATIONS PAGE*/
 
-.qualifications-header {
+/* .qualifications-header {
   overflow: hidden;
   margin: 0 auto;
   max-width: fit-content;
@@ -176,8 +177,9 @@ main {
 
 .qualifications-header img:hover {
   cursor: pointer;
-  /*TODO: enlarge image and download as csv */
-}
+} 
+
+*/
 
 .qualifications-technical-skills-container {
   user-select: none;

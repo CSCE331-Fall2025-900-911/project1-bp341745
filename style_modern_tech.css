@@ -145,6 +145,7 @@ main {
 .portfolio-project-summary-container {
   margin-top: 75px;
   display: flex;
+  margin-right: 25px;
 }
 
 .portfolio-project-summary-container img,.portfolio-project-video {
@@ -161,6 +162,11 @@ main {
 
 .portfolio-project-video{
     
+}
+
+.thumbnail{
+  width: 300px;
+  height: 200px;
 }
 
 /* QUALIFICATIONS PAGE*/

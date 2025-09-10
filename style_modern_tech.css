@@ -13,6 +13,8 @@
   src: url(fonts/ChakraPetch-Regular.ttf);
 }
 
+
+
 /*ALL PAGES*/
 
 /* header {
@@ -32,7 +34,7 @@ body {
 }
 main {
   border-radius: 1rem;
-  padding: 40px;
+  padding: 4rem;
   margin: 60px 120px;
   background-image: linear-gradient(to bottom, hsl(0, 1%, 19%), rgb(7, 7, 7), rgb(112, 112, 112));
   /* background-image: radial-gradient(circle at top left, rgb(78, 172, 122), rgb(23, 15, 130)); */
@@ -73,6 +75,19 @@ main {
   background-color: grey;
   /*More effects i want to add later:
         font increase size animation;*/
+}
+
+#theme-toggle {
+  padding: 0.5rem 1rem;
+  background: hsl(0, 0%, 0%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.toggle-container{
+  padding-top: 2rem;
+  text-align: center;
 }
 
 .section-header {
@@ -121,7 +136,7 @@ main {
 }
 
 .about-me-professional-summary-container{
-  padding: 45px;
+  padding: 1rem;
 }
 
 .about-me-heading {
@@ -221,10 +236,10 @@ main {
 }
 
 .qualifications-main {
-  position: absolute;
+  position: relative;
   width: fit-content;
   height: fit-content;
-  overflow: hidden;       /* hides images outside edges */
+  overflow: hidden;      
 }
 
 .qualifications-main .qualifications-floating-track {
@@ -247,7 +262,7 @@ main {
     transform: translate(100%, -50%); /* off right edge */
   }
   to {
-    transform: translate(-100%, -60%); /* off left edge */
+    transform: translate(-100%, -100%); /* off left edge */
   }
 }
 
@@ -261,11 +276,11 @@ main {
 
 .service-community-service-intro {
   margin-top: 20px;
-  padding: 0px 100px;
+  padding: 1rem;
 }
 
 .service-content-container {
-  margin: 60px 50px;
+  margin: 1rem;
   display: flex;
   gap: 1rem;
   justify-content: center;
@@ -297,4 +312,73 @@ main {
   border-radius: 2rem;
   border: 3px solid #ccc;
   box-shadow: 0 8px 12px rgba(0, 0, 0, 5);
+}
+
+
+/* AI Page*/
+
+
+.ai-body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to right, #fdfbfb, #ebedee);
+  color: #333;
+}
+
+.ai-navbar {
+  background: #4eac7a;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.ai-navbar ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.ai-navbar a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+.pokemon-header {
+  text-align: center;
+  padding: 2rem;
+}
+
+
+
+
+.pokemon-team {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.pokemon-card {
+  background: white;
+  border-radius: 1rem;
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  text-align: center;
+  width: 200px;
+}
+
+.pokemon-card img {
+  max-width: 100%;
+  border-radius: 0.5rem;
+}
+
+.pokemon-footer {
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+  background: #4eac7a;
+  color: white;
 }

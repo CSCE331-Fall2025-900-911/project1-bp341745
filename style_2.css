@@ -1,0 +1,144 @@
+@font-face {
+  font-family: Pixelfont;
+  src: url(fonts/PressStart2P-Regular.ttf);
+}
+@font-face {
+  font-family: PixelSans;
+  src: url(fonts/PixelifySans-VariableFont_wght.ttf);
+}
+
+
+
+
+/* AI page style 2*/
+
+.ai-body {
+  margin: 0;
+  font-family: Pixelfont;
+  background: #88c070 url('https://www.transparenttextures.com/patterns/pixel-weave.png');
+  color: #111;
+}
+
+.ai-navbar {
+  background: #ff0000;
+  padding: 0.5rem;
+  border-bottom: 4px solid #000;
+}
+
+.ai-navbar ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+.ai-navbar a {
+  text-decoration: none;
+  color: white;
+  font-size: 12px;
+}
+
+.pokemon-header {
+  text-align: center;
+  padding: 1rem;
+  background: #ffcc00;
+  border-bottom: 4px solid #000;
+}
+
+#theme-toggle {
+  padding: 0.5rem 1rem;
+  font-family: inherit;
+  background: #0070f3;
+  color: white;
+  border: 3px solid black;
+  cursor: pointer;
+}
+
+.pokemon-team {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+  align-items: flex-start;
+  flex-wrap: wrap; /* wrap on small screens */
+}
+
+/* Card shell */
+.pokemon-card {
+  width: 210px;                 /* card width */
+  box-sizing: border-box;
+  padding: 12px;
+  background: #fff;
+  border: 3px solid #000;      /* pixel-outline look */
+  text-align: center;
+  font-family: "Press Start 2P", monospace;
+  color: #111;
+  position: relative;
+  /* optional retro shadow */
+  box-shadow: 6px 6px 0 #000;
+  /* ensure children stack vertically */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Pseudo-element used for the sprite image at the top */
+.pokemon-card::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 150px;               /* sprite container height — adjust to taste */
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: contain;    /* keeps sprite aspect ratio */
+  margin-bottom: 10px;         /* gap between sprite and text */
+}
+
+/* assign the actual sprite URLs using a CSS variable on each card ID */
+#pikachu-card { --sprite: url("assets/pixel_pikachu.jpg"); }
+#charmander-card { --sprite: url("assets/pixel_charmander.png"); }
+#squirtle-card { --sprite: url("assets/pixel_squirtle.png"); }
+
+/* apply the sprite variable to the pseudo-element */
+.pokemon-card::before {
+  background-image: var(--sprite);
+}
+
+/* hide the HTML <img> when in pixel-theme */
+.pokemon-card img {
+  display: none;
+}
+
+/* text spacing / reset */
+.pokemon-card h2 {
+  margin: 0 0 6px 0;
+  font-size: 14px;
+}
+
+.pokemon-card p {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.2;
+}
+
+@media (max-width: 560px) {
+  .pokemon-team {
+    flex-direction: column;
+    align-items: center;
+  }
+  .pokemon-card {
+    width: 85%;
+    max-width: 300px;
+  }
+  .pokemon-card::before { height: 180px; }
+}
+
+.pokemon-footer {
+  text-align: center;
+  padding: 1rem;
+  margin-top: 1rem;
+  background: #222;
+  color: #fff;
+  border-top: 4px solid #000;
+}

@@ -11,7 +11,7 @@
       <h1>Header (image will go here)</h1>
     </header> -->
 
-    <main>
+    <main class="portfolio-main">
       <nav class="navbar">
         <ul class="pagination_items">
           <li id="landing_page_list_item"><a href="index.html">About Me</a></li>
@@ -42,50 +42,41 @@
         </p>
       </div>
 
+      <section class="section-header">
+        <h1>Projects</h1>
+      </section>
+
       <div class="portfolio-project-summary-container">
-        <div>
-           <img src="assets/pos_thumbnil.png" alt="Point-of-sales system project thumbnail" class="thumbnail">
-           <video muted loop>
-            <source src="" type="video/mp4">
-
-           </video>
-
+        <div class="portfolio-thumbnail-wrapper">
+          <img
+            src="assets/pos_thumbnil.png"
+            alt="Point-of-sales system project thumbnail"
+            class="thumbnail"
+          />
+          <video class="portfolio-thumbnail-video" muted>
+            <source src="assets/POS_overview_example.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
         </div>
-       
-        
 
         <p class="paragraph-text">
           In developing my point-of-sale system, I wanted to solve a common
-          issue my local restaurant was facing: waiting until items were completely out of
-          stock before placing new orders, which often caused delays and
-          inefficiencies. I built inventory management into the system so
-          low-stock items could be flagged in advance, helping staff stay
-          proactive instead of reactive. To take it a step further, I added a
-          data reporting page that tracks which items are ordered on specific
+          issue my local restaurant was facing: waiting until items were
+          completely out of stock before placing new orders, which often caused
+          delays and inefficiencies. I built inventory management into the
+          system so low-stock items could be flagged in advance, helping staff
+          stay proactive instead of reactive. To take it a step further, I added
+          a data reporting page that tracks which items are ordered on specific
           days and uses those patterns to predict future demand. This way, the
           system not only manages daily operations but also supports smarter,
           data-driven decisions for ordering and planning.
         </p>
       </div>
 
-      <div class="portfolio-project-summary-container">
-        <img src="assets/under_construction.png" />
-        <p class="paragraph-text">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam
-          eveniet asperiores veniam laudantium placeat autem, porro nesciunt
-          similique maiores mollitia expedita ipsum nemo odit aut ex! Dolorum
-          nobis harum natus.
-        </p>
-      </div>
-      <div class="portfolio-project-summary-container">
-        <img src="assets/under_construction.png" />
-        <p class="paragraph-text">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam
-          eveniet asperiores veniam laudantium placeat autem, porro nesciunt
-          similique maiores mollitia expedita ipsum nemo odit aut ex! Dolorum
-          nobis harum natus.
-        </p>
-      </div>
+     
+     
     </main>
+      <script src="style_modern.js"></script>
+
   </body>
 </html>

@@ -244,16 +244,12 @@ main {
 }
 
 .qualifications-floating-track {
-  display: inline-flex;
+  display: flex;
   gap: 5rem; 
   position: absolute;
   width: max-content;
   top: 50%;
   animation: marquee 20s linear infinite;
-}
-
-.float-img {
-  flex-shrink: 0; /* prevents shrinking */
 }
 
 .qualifications-main .float-img {

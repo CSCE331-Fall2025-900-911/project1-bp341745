@@ -24,6 +24,25 @@ document.querySelectorAll(".portfolio-thumbnail-wrapper").forEach(wrapper => {
   });
 });
 
+// This is the JS script for paragraph visual
+document.addEventListener("DOMContentLoaded", () => {
+  const paragraphs = document.querySelectorAll(".paragraph-text");
+
+  const observer = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+          obs.unobserve(entry.target); // only animate once
+        }
+      });
+    },
+    { threshold: 0.3 } // trigger when 30% of element is visible
+  );
+
+  paragraphs.forEach(p => observer.observe(p));
+});
+
 
 const toggleBtn = document.getElementById("theme-toggle");
 const themeLink = document.getElementById("theme-style");

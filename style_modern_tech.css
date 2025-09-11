@@ -110,6 +110,17 @@ main {
   border-radius: 0.5rem;
   color: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 2);
+
+  /*animations*/
+
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.paragraph-text.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
         /*ABOUT ME*/
@@ -267,7 +278,21 @@ main {
 .qualifications-contact-container{
    display: flex;
    gap: 3rem;
+   justify-content: center;
+   align-items: center;
 }
+.qualifications-contact-container .float-img{
+  width: 60px; 
+  height: auto;
+  filter: invert(1); 
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+.qualifications-contact-container .float-img:hover {
+  transform: scale(1.1);
+}
+
 
 .qualifications-floating-track {
   display: flex;
@@ -308,11 +333,31 @@ main {
 }
 
 .service-content-container {
-  margin: 1rem;
+  margin: 3rem;
   display: flex;
-  gap: 1rem;
+  gap: 4rem;
   justify-content: center;
   overflow: hidden;
+}
+
+
+
+.service-project-header{
+  color: white;
+  font-family: Orbitron;
+  text-align: center;
+}
+
+.service-project-text{
+  font-family: Chakrapetch;
+  max-height: fit-content;
+  overflow: auto;
+  background-color: rgb(86, 86, 86);
+  border-radius: 0.5rem;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 2);
+  
+
 }
 
 .service-content-container p {

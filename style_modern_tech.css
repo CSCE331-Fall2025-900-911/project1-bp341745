@@ -17,11 +17,6 @@
 
 /*ALL PAGES*/
 
-/* header {
-  max-height: 200px;
-  background-color: grey;
-} */
-
 body {
   /* background-image: linear-gradient(to bottom, hsl(0, 1%, 19%), rgb(7, 7, 7)); */
   /* background-image: radial-gradient(circle at top left, rgb(78, 172, 122), rgb(23, 15, 130)); */
@@ -85,6 +80,12 @@ main {
   border-radius: 8px;
   cursor: pointer;
 }
+
+#theme-toggle:hover {
+    background-color: grey;
+}
+
+
 .toggle-container{
   padding-top: 2rem;
   text-align: center;
@@ -231,7 +232,7 @@ main {
 
 .qualifications-summary-container {
   margin-top: 20px;
-  margin-bottom: 250px;
+  margin-bottom: 200px;
   padding: 0px 100px;
 }
 
@@ -242,13 +243,17 @@ main {
   overflow: hidden;      
 }
 
-.qualifications-main .qualifications-floating-track {
-  display: flex;
-  gap: 3rem; 
+.qualifications-floating-track {
+  display: inline-flex;
+  gap: 5rem; 
   position: absolute;
+  width: max-content;
   top: 50%;
-  transform: translateY(-50%);
   animation: marquee 20s linear infinite;
+}
+
+.float-img {
+  flex-shrink: 0; /* prevents shrinking */
 }
 
 .qualifications-main .float-img {
@@ -259,10 +264,10 @@ main {
 
 @keyframes marquee {
   from {
-    transform: translate(100%, -50%); /* off right edge */
+    transform: translate(0); 
   }
   to {
-    transform: translate(-100%, -100%); /* off left edge */
+    transform: translate(-50%); 
   }
 }
 

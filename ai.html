@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -48,4 +48,239 @@
 
     <script src="toggle_theme.js"></script>
   </body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude's Pokémon AI Showcase</title>
+    <link id="theme-style" rel="stylesheet" href="style_modern_tech.css" />
+</head>
+<body class="ai-body">
+      <script src="toggle_theme.js"></script>
+
+    <!-- Animated Background Particles -->
+    <div class="bg-particles" id="particles"></div>
+
+    <main class="pokemon-main">
+        <nav class="ai-navbar">
+            <ul>
+                <li><a href="index.html">About Me</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="qualifications.html">Qualifications</a></li>
+                <li><a href="service.html">Service</a></li>
+                <li><a href="ai.html">Pokémon</a></li>
+            </ul>
+        </nav>
+
+        <header class="pokemon-header">
+            <h1>Claude's Pokémon AI Showcase</h1>
+            <p>Experience the fusion of artificial intelligence and Pokémon mastery. Each creature represents a unique aspect of computational excellence and digital evolution.</p>
+            <button class="theme-toggle" id="theme-toggle">✨ Neural Mode</button>
+        </header>
+
+        <div class="marquee-container">
+            <div class="pokemon-marquee" id="pokemon-marquee">
+                <!-- First set of cards -->
+                <div class="pokemon-card" data-pokemon="pikachu">
+                    <img src="https://img.pokemondb.net/artwork/large/pikachu.jpg" alt="Pikachu">
+                    <h3>Pikachu</h3>
+                    <div class="pokemon-type type-electric">Electric ⚡</div>
+                    <div class="pokemon-stats">
+                        <span>HP: 35</span>
+                        <span>ATK: 55</span>
+                        <span>DEF: 40</span>
+                    </div>
+                </div>
+
+                <div class="pokemon-card" data-pokemon="charmander">
+                    <img src="https://img.pokemondb.net/artwork/large/charmander.jpg" alt="Charmander">
+                    <h3>Charmander</h3>
+                    <div class="pokemon-type type-fire">Fire 🔥</div>
+                    <div class="pokemon-stats">
+                        <span>HP: 39</span>
+                        <span>ATK: 52</span>
+                        <span>DEF: 43</span>
+                    </div>
+                </div>
+
+                <div class="pokemon-card" data-pokemon="squirtle">
+                    <img src="https://img.pokemondb.net/artwork/large/squirtle.jpg" alt="Squirtle">
+                    <h3>Squirtle</h3>
+                    <div class="pokemon-type type-water">Water 💧</div>
+                    <div class="pokemon-stats">
+                        <span>HP: 44</span>
+                        <span>ATK: 48</span>
+                        <span>DEF: 65</span>
+                    </div>
+                </div>
+
+                <div class="pokemon-card" data-pokemon="bulbasaur">
+                    <img src="https://img.pokemondb.net/artwork/large/bulbasaur.jpg" alt="Bulbasaur">
+                    <h3>Bulbasaur</h3>
+                    <div class="pokemon-type type-grass">Grass 🌿</div>
+                    <div class="pokemon-stats">
+                        <span>HP: 45</span>
+                        <span>ATK: 49</span>
+                        <span>DEF: 49</span>
+                    </div>
+                </div>
+
+                <div class="pokemon-card" data-pokemon="mewtwo">
+                    <img src="https://img.pokemondb.net/artwork/large/mewtwo.jpg" alt="Mewtwo">
+                    <h3>Mewtwo</h3>
+                    <div class="pokemon-type type-psychic">Psychic 🧠</div>
+                    <div class="pokemon-stats">
+                        <span>HP: 106</span>
+                        <span>ATK: 110</span>
+                        <span>DEF: 90</span>
+                    </div>
+                </div>
+
+                <div class="pokemon-card" data-pokemon="eevee">
+                    <img src="https://img.pokemondb.net/artwork/large/eevee.jpg" alt="Eevee">
+                    <h3>Eevee</h3>
+                    <div class="pokemon-type type-normal">Normal ⭐</div>
+                    <div class="pokemon-stats">
+                        <span>HP: 55</span>
+                        <span>ATK: 55</span>
+                        <span>DEF: 50</span>
+                    </div>
+                </div>
+
+                <div class="pokemon-card" data-pokemon="alakazam">
+                    <img src="https://img.pokemondb.net/artwork/large/alakazam.jpg" alt="Alakazam">
+                    <h3>Alakazam</h3>
+                    <div class="pokemon-type type-psychic">Psychic 🧠</div>
+                    <div class="pokemon-stats">
+                        <span>HP: 55</span>
+                        <span>ATK: 50</span>
+                        <span>DEF: 45</span>
+                    </div>
+                </div>
+
+                <div class="pokemon-card" data-pokemon="gengar">
+                    <img src="https://img.pokemondb.net/artwork/large/gengar.jpg" alt="Gengar">
+                    <h3>Gengar</h3>
+                    <div class="pokemon-type type-psychic">Ghost 👻</div>
+                    <div class="pokemon-stats">
+                        <span>HP: 60</span>
+                        <span>ATK: 65</span>
+                        <span>DEF: 60</span>
+                    </div>
+                </div>
+
+                <!-- Duplicate set for seamless loop -->
+                <div class="pokemon-card" data-pokemon="pikachu">
+                    <img src="https://img.pokemondb.net/artwork/large/pikachu.jpg" alt="Pikachu">
+                    <h3>Pikachu</h3>
+                    <div class="pokemon-type type-electric">Electric ⚡</div>
+                    <div class="pokemon-stats">
+                        <span>HP: 35</span>
+                        <span>ATK: 55</span>
+                        <span>DEF: 40</span>
+                    </div>
+                </div>
+
+                <div class="pokemon-card" data-pokemon="charmander">
+                    <img src="https://img.pokemondb.net/artwork/large/charmander.jpg" alt="Charmander">
+                    <h3>Charmander</h3>
+                    <div class="pokemon-type type-fire">Fire 🔥</div>
+                    <div class="pokemon-stats">
+                        <span>HP: 39</span>
+                        <span>ATK: 52</span>
+                        <span>DEF: 43</span>
+                    </div>
+                </div>
+
+                <div class="pokemon-card" data-pokemon="squirtle">
+                    <img src="https://img.pokemondb.net/artwork/large/squirtle.jpg" alt="Squirtle">
+                    <h3>Squirtle</h3>
+                    <div class="pokemon-type type-water">Water 💧</div>
+                    <div class="pokemon-stats">
+                        <span>HP: 44</span>
+                        <span>ATK: 48</span>
+                        <span>DEF: 65</span>
+                    </div>
+                </div>
+
+                <div class="pokemon-card" data-pokemon="bulbasaur">
+                    <img src="https://img.pokemondb.net/artwork/large/bulbasaur.jpg" alt="Bulbasaur">
+                    <h3>Bulbasaur</h3>
+                    <div class="pokemon-type type-grass">Grass 🌿</div>
+                    <div class="pokemon-stats">
+                        <span>HP: 45</span>
+                        <span>ATK: 49</span>
+                        <span>DEF: 49</span>
+                    </div>
+                </div>
+
+                <div class="pokemon-card" data-pokemon="mewtwo">
+                    <img src="https://img.pokemondb.net/artwork/large/mewtwo.jpg" alt="Mewtwo">
+                    <h3>Mewtwo</h3>
+                    <div class="pokemon-type type-psychic">Psychic 🧠</div>
+                    <div class="pokemon-stats">
+                        <span>HP: 106</span>
+                        <span>ATK: 110</span>
+                        <span>DEF: 90</span>
+                    </div>
+                </div>
+
+                <div class="pokemon-card" data-pokemon="eevee">
+                    <img src="https://img.pokemondb.net/artwork/large/eevee.jpg" alt="Eevee">
+                    <h3>Eevee</h3>
+                    <div class="pokemon-type type-normal">Normal ⭐</div>
+                    <div class="pokemon-stats">
+                        <span>HP: 55</span>
+                        <span>ATK: 55</span>
+                        <span>DEF: 50</span>
+                    </div>
+                </div>
+
+                <div class="pokemon-card" data-pokemon="alakazam">
+                    <img src="https://img.pokemondb.net/artwork/large/alakazam.jpg" alt="Alakazam">
+                    <h3>Alakazam</h3>
+                    <div class="pokemon-type type-psychic">Psychic 🧠</div>
+                    <div class="pokemon-stats">
+                        <span>HP: 55</span>
+                        <span>ATK: 50</span>
+                        <span>DEF: 45</span>
+                    </div>
+                </div>
+
+                <div class="pokemon-card" data-pokemon="gengar">
+                    <img src="https://img.pokemondb.net/artwork/large/gengar.jpg" alt="Gengar">
+                    <h3>Gengar</h3>
+                    <div class="pokemon-type type-psychic">Ghost 👻</div>
+                    <div class="pokemon-stats">
+                        <span>HP: 60</span>
+                        <span>ATK: 65</span>
+                        <span>DEF: 60</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div id="pokemon-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div id="modal-body">
+                    <!-- Content will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <footer class="pokemon-footer">
+            <p>Made for fun · Gotta Catch 'Em All!</p>
+            <p class="claude-signature">Crafted with AI precision by Claude ⚡</p>
+        </footer>
+    </main> 
+
+       <script src="toggle_theme.js"></script>
+
+</body>
 </html>

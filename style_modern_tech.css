@@ -106,7 +106,8 @@ main {
 
 .section-header,
 .portfolio-summary-section-header,
-.service-section-header {
+.service-section-header,
+.qualifications-section-header {
   margin-top: 75px;
   font-size: larger;
   font-family: Orbitron;

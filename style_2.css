@@ -17,7 +17,7 @@ body {
 }
 
 ::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 main {
@@ -90,7 +90,7 @@ main {
   text-shadow: 2px 4px #00a2ff;
 }
 
-.paragraph-text{
+.paragraph-text {
   background: #1a0033;
   color: #00aeff;
   font-family: Pixelsans;
@@ -235,7 +235,7 @@ main {
 }
 
 .portfolio-summary-section-header {
- margin-top: 75px;
+  margin-top: 75px;
   font-size: larger;
   color: rgb(0, 17, 255);
   text-shadow: 2px 4px rgb(0, 2, 90);
@@ -263,8 +263,6 @@ main {
   border-radius: 0.5rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 2);
 }
-
-
 
 .portfolio-project-summary-container img:hover {
   cursor: pointer;
@@ -309,6 +307,16 @@ main {
   max-width: 77%;
   overflow: hidden;
 }
+
+.qualifications-section-header{
+  margin-top: 75px;
+  font-size: larger;
+  color: rgb(0, 17, 255);
+  text-shadow: 2px 4px rgb(0, 2, 90);
+  user-select: none;
+  font-family: Pixelfont;
+}
+
 .qualifications-summary-container {
   margin-top: 20px;
   margin-bottom: 75px;
@@ -364,12 +372,12 @@ main {
 
 /*Service*/
 
-.service-body{
+.service-body {
   background-image: url(assets/pixel-portrait.jpg);
-  background-size: cover ;
+  background-size: cover;
 }
 
-.service-section-header{
+.service-section-header {
   margin-top: 75px;
   font-size: larger;
   color: rgb(0, 17, 255);
@@ -393,11 +401,14 @@ main {
 }
 
 .service-project-header {
+  display: block;
   color: white;
   font-family: Pixelfont;
-  text-align: center;
-}
+  text-shadow: 2px 4px #c300ff;
 
+  text-align: center;
+  user-select: none;
+}
 
 .service-project-text {
   background: #1a0033;

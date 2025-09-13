@@ -383,13 +383,26 @@ main {
 }
 
 .service-project-text {
-  font-family: Chakrapetch;
-  max-height: fit-content;
-  overflow: auto;
   background-color: rgb(86, 86, 86);
-  border-radius: 0.5rem;
-  color: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 2);
+  overflow: auto;
+  border-radius: 0.5rem;
+  max-height: fit-content;
+  color: white;
+  font-family: Chakrapetch;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 24px;
+  margin: 20px 0;
+
+  opacity: 0;
+  transition: opacity 1s ease-out, transform 1.2s ease-out;
+  transform: scale(0.8);
+}
+
+.service-project-text.show {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .service-content-container p {

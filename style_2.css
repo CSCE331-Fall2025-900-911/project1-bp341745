@@ -14,29 +14,16 @@
 
 /*ALL PAGES*/
 
-body {
-  /* background-image: linear-gradient(to bottom, hsl(0, 1%, 19%), rgb(7, 7, 7)); */
-  /* background-image: radial-gradient(circle at top left, rgb(78, 172, 122), rgb(23, 15, 130)); */
-  background-image: radial-gradient(
-    circle at top left,
-    rgb(78, 172, 122),
-    rgb(101, 11, 161),
-    rgb(10, 166, 187)
-  );
-
+body{
+   background-image: url(assets/pixel-landscape.jpg) ;
+   background-size: auto;
 }
+
+
 main {
   border-radius: 1rem;
   padding: 4rem;
   margin: 60px 120px;
-  background-image: linear-gradient(
-    to bottom,
-    hsl(0, 1%, 19%),
-    rgb(7, 7, 7),
-    rgb(112, 112, 112)
-  );
-
-
 }
 
 .navbar {
@@ -99,25 +86,37 @@ main {
   font-size: larger;
   color: white;
   user-select: none;
+  font-family: Pixelfont;
+    text-shadow:  2px 4px #00a2ff;
+
 }
 
 .paragraph-text {
-  font-family: PixelSans;
-  padding: 30px;
-  display: inline-block;
-  min-width: 700px;
-  max-height: fit-content;
-  overflow: auto;
-  background-color: rgb(86, 86, 86);
-  border-radius: 0.5rem;
-  color: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 2);
+  background: #1a0033;
+            color: #00aeff;
+            font-family: Pixelsans;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 24px;
+            margin: 20px 0;
+            
+            /* Thick pixelated border */
+            border: 6px solid;
+            border-image: linear-gradient(45deg, #ff00ff, #8000ff) 1;
+            
+            /* Multiple shadow layers for depth */
+            box-shadow:
+                0 0 0 2px #ff00ff,
+                6px 6px 0 2px #8000ff,
+                12px 12px 0 2px #4000ff,
+                0 0 30px rgba(255, 0, 255, 0.5);
+  
 
   /*animations*/
 
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  transition: opacity 1s ease-out, transform 1s ease-out;
 }
 
 .paragraph-text.show {
@@ -127,8 +126,10 @@ main {
 
 /*ABOUT ME*/
 
-.about-me-header {
-  color: white;
+
+.about-me-name-header {
+  color: rgb(0, 227, 243);
+  text-shadow:  2px 4px rgb(18, 10, 94);
   font-family: Pixelfont;
   font-size: larger;
   margin-top: 75px;
@@ -181,16 +182,17 @@ main {
 }
 
 .about-me-heading {
-  color: white;
+  color: hsl(175, 92%, 47%);
   font-family: Pixelfont;
   font-size: larger;
   text-align: center;
   user-select: none;
+  text-shadow:  2px 5px #000000;
+
 }
 
 .about-me-column-container {
   display: flex;
-  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
 }
 
@@ -200,24 +202,173 @@ main {
 }
 
 .about-me-column-text {
-  font-family: PixelSans;
-  text-align: center;
-  padding: 20px;
-  display: inline-block;
-  max-height: 400px;
-  overflow: auto;
-  background-color: rgb(86, 86, 86);
-  border-radius: 0.5rem;
-  color: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 2);
+  background: #1a0033;
+            color: #00aeff;
+            font-family: Pixelsans;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 24px;
+            margin: 20px 0;
+            
+            border: 6px solid;
+            border-image: linear-gradient(45deg, #ff00ff, #8000ff) 1;
+            
+            box-shadow:
+                0 0 0 2px #ff00ff,
+                6px 6px 0 2px #8000ff,
+                12px 12px 0 2px #4000ff,
+                0 0 30px rgba(255, 0, 255, 0.5);
+                
+  opacity: 0;
+  transition: opacity 1s ease-out, transform 1.2s ease-out;
+  transform: scale(0.8);
+
+}
+
+.about-me-column-text.show {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .about-me-outro {
   padding: 1rem;
 }
 
+/* PORTFOLIO*/
+
+.portfolio-body{
+  background-image: url(assets/pixel-portrait.jpg);
+  background-size: cover;
+}
+
+.portfolio-main {
+  padding: 4rem;
+}
+
+.portfolio-summary-container {
+  margin-top: 20px;
+  padding: 1rem;
+}
+
+.portfolio-project-container {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.portfolio-thumbnail-wrapper {
+  margin-right: 50px;
+  width: 50%;
+  height: 350px;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 2);
+}
+
+.portfolio-thumbnail-wrapper img {
+  align-items: center;
+}
+
+.portfolio-project-summary-container img:hover {
+  cursor: pointer;
+  /* TODO: dilate image/video*/
+}
+
+.portfolio-project-header {
+  display: block;
+  color: white;
+  font-family: Pixelfont;
+    text-shadow:  2px 4px #c300ff;
+
+  text-align: center;
+  user-select: none;
+}
 
 
+
+.portfolio-thumbnail-wrapper img,
+.portfolio-thumbnail-wrapper video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+}
+
+.portfolio-project-description-container a {
+  text-decoration: none;
+  color: aqua;
+}
+.portfolio-project-description-container a:hover {
+  text-decoration: underline;
+  text-decoration-color: hsl(180, 100%, 50%);
+  color: hsl(180, 100%, 50%);
+}
+
+.portfolio-thumbnail-video {
+  display: none;
+}
+
+
+/* QUALIFICATIONS*/
+
+
+.qualifications-main {
+  max-width: 77%;
+  overflow: hidden;
+}
+.qualifications-summary-container {
+  margin-top: 20px;
+  margin-bottom: 75px;
+  padding: 0px 100px;
+}
+
+.qualifications-contact-container {
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
+  align-items: center;
+}
+.qualifications-contact-container .float-img {
+  width: 60px;
+  height: auto;
+  filter: invert(1);
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+.qualifications-contact-container .float-img:hover {
+  transform: scale(1.1);
+}
+
+.qualifications-floating-track {
+  display: flex;
+  gap: 5rem;
+  position: relative;
+  overflow: hidden;
+  width: fit-content;
+  animation: marquee 20s linear infinite;
+}
+
+.qualifications-main .float-img {
+  width: 80px; /* adjust size */
+  height: auto;
+  filter: invert(1);
+  user-select: none;
+}
+
+@keyframes marquee {
+  from {
+    transform: translate(0);
+  }
+  to {
+    transform: translate(-50%);
+  }
+}
+
+.qualifications-interests-container {
+  padding: 0px 100px;
+}
 
 /* AI page style 2*/
 

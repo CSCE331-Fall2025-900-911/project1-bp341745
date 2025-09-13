@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', initThemeToggle);
 document.addEventListener("DOMContentLoaded", () => {
   const paragraphs = document.querySelectorAll(".paragraph-text");
 
-  const observer = new IntersectionObserver(
+  const p_observer = new IntersectionObserver(
     (entries, obs) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -79,7 +79,25 @@ document.addEventListener("DOMContentLoaded", () => {
     { threshold: 0.3 } // trigger when 30% of element is visible
   );
 
-  paragraphs.forEach(p => observer.observe(p));
+  paragraphs.forEach(p => p_observer.observe(p));
+
+  const column_texts = document.querySelectorAll(".about-me-column-text");
+
+  const observer = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+          obs.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.3 } 
+  );
+
+  column_texts.forEach(p => observer.observe(p));
+
+
 
   /* AI script */
 

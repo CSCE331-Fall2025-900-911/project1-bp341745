@@ -24,7 +24,46 @@ document.querySelectorAll(".portfolio-thumbnail-wrapper").forEach(wrapper => {
   });
 });
 
-// This is the JS script for paragraph visual
+
+
+function initThemeToggle() {
+        const toggleBtn = document.getElementById('theme-toggle');
+        const themeLink = document.getElementById('theme-style');
+        
+        if (!toggleBtn || !themeLink) return;
+        
+        const themes = {
+            'modern': 'style_modern_tech.css',
+            'pixel': 'style_2.css'
+        };
+        
+        function switchTheme() {
+            const currentTheme = localStorage.getItem('selectedTheme') || 'modern';
+            const newTheme = currentTheme === 'modern' ? 'pixel' : 'modern';
+            
+            themeLink.href = themes[newTheme];
+            localStorage.setItem('selectedTheme', newTheme);
+            
+            updateThemeDisplay();
+            
+            console.log('Switched from', currentTheme, 'to', newTheme);
+        }
+        
+        function updateThemeDisplay() {
+            const currentTheme = localStorage.getItem('selectedTheme') || 'modern';
+            document.querySelectorAll('[id^="current-theme-"]').forEach(el => {
+                el.textContent = currentTheme.charAt(0).toUpperCase() + currentTheme.slice(1);
+            });
+        }
+        
+        toggleBtn.addEventListener('click', switchTheme);
+        updateThemeDisplay();
+    }
+
+
+document.addEventListener('DOMContentLoaded', initThemeToggle);
+
+
 document.addEventListener("DOMContentLoaded", () => {
   const paragraphs = document.querySelectorAll(".paragraph-text");
 
@@ -187,32 +226,32 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Theme toggle functionality
-    function initializeThemeToggle() {
-        const themeToggle = document.getElementById('theme-toggle');
-        if (!themeToggle) return;
+    // function initializeThemeToggle() {
+    //     const themeToggle = document.getElementById('theme-toggle');
+    //     if (!themeToggle) return;
 
-        let isDarkMode = true;
+    //     let isDarkMode = true;
 
-        themeToggle.addEventListener('click', () => {
-            if (isDarkMode) {
-                // Switch to light mode
-                document.documentElement.style.setProperty('--dark-gradient', 'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 50%, #dee2e6 100%)');
-                document.documentElement.style.setProperty('--text-primary', '#212529');
-                document.documentElement.style.setProperty('--text-secondary', '#495057');
-                document.documentElement.style.setProperty('--card-bg', 'rgba(0, 0, 0, 0.05)');
-                themeToggle.textContent = '🌙 Dark Mode';
-                isDarkMode = false;
-            } else {
-                // Switch to dark mode
-                document.documentElement.style.setProperty('--dark-gradient', 'linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%)');
-                document.documentElement.style.setProperty('--text-primary', '#ffffff');
-                document.documentElement.style.setProperty('--text-secondary', '#b8c5d1');
-                document.documentElement.style.setProperty('--card-bg', 'rgba(255, 255, 255, 0.1)');
-                themeToggle.textContent = '✨ Neural Mode';
-                isDarkMode = true;
-            }
-        });
-    }
+    //     themeToggle.addEventListener('click', () => {
+    //         if (isDarkMode) {
+    //             // Switch to light mode
+    //             document.documentElement.style.setProperty('--dark-gradient', 'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 50%, #dee2e6 100%)');
+    //             document.documentElement.style.setProperty('--text-primary', '#212529');
+    //             document.documentElement.style.setProperty('--text-secondary', '#495057');
+    //             document.documentElement.style.setProperty('--card-bg', 'rgba(0, 0, 0, 0.05)');
+    //             themeToggle.textContent = 'JS- Dark Mode';
+    //             isDarkMode = false;
+    //         } else {
+    //             // Switch to dark mode
+    //             document.documentElement.style.setProperty('--dark-gradient', 'linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%)');
+    //             document.documentElement.style.setProperty('--text-primary', '#ffffff');
+    //             document.documentElement.style.setProperty('--text-secondary', '#b8c5d1');
+    //             document.documentElement.style.setProperty('--card-bg', 'rgba(255, 255, 255, 0.1)');
+    //             themeToggle.textContent = 'JS- Neural Mode';
+    //             isDarkMode = true;
+    //         }
+    //     });
+    // }
 
     // Add mouse follow effect for cards (premium interactive effect)
     function initializeMouseEffects() {
@@ -232,7 +271,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function initialize() {
         createParticles();
         initializePokemonCards();
-        initializeThemeToggle();
+        initializeThemeToggleWithReload();
         initializeMouseEffects();
     }
 
@@ -241,16 +280,17 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-const toggleBtn = document.getElementById("theme-toggle");
-const themeLink = document.getElementById("theme-style");
+// const toggleBtn = document.getElementById("theme-toggle");
+// const themeLink = document.getElementById("theme-style");
 
-toggleBtn.addEventListener("click", () => {
-  if (themeLink.getAttribute("href") === "style_modern_tech.css") {
-    themeLink.setAttribute("href", "style_2.css"); // pixel
-  } else {
-    themeLink.setAttribute("href", "style_modern_tech.css");  // switch to modern
-  }
-});
+// toggleBtn.addEventListener("click", () => {
+//   if (themeLink.getAttribute("href") === "style_modern_tech.css") {
+//     themeLink.setAttribute("href", "style_2.css"); // pixel
+//   } else {
+//     themeLink.setAttribute("href", "style_modern_tech.css");  // switch to modern
+//   }
+// });
+
 
 
 

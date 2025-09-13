@@ -9,6 +9,215 @@
 
 
 
+/*ABOUT ME*/
+
+
+/*ALL PAGES*/
+
+body {
+  /* background-image: linear-gradient(to bottom, hsl(0, 1%, 19%), rgb(7, 7, 7)); */
+  /* background-image: radial-gradient(circle at top left, rgb(78, 172, 122), rgb(23, 15, 130)); */
+  background-image: radial-gradient(
+    circle at top left,
+    rgb(78, 172, 122),
+    rgb(101, 11, 161),
+    rgb(10, 166, 187)
+  );
+
+}
+main {
+  border-radius: 1rem;
+  padding: 4rem;
+  margin: 60px 120px;
+  background-image: linear-gradient(
+    to bottom,
+    hsl(0, 1%, 19%),
+    rgb(7, 7, 7),
+    rgb(112, 112, 112)
+  );
+
+
+}
+
+.navbar {
+  display: flex;
+  justify-content: center;
+}
+
+.navbar ul {
+  list-style-type: none;
+  background-color: black;
+  padding: 0px;
+  margin: 0px;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 2);
+  user-select: none;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  padding: 30px;
+  display: block;
+  text-align: center;
+}
+
+.navbar li {
+  float: left;
+  overflow: hidden;
+  font-size: large;
+  font-family: Pixelfont;
+}
+
+.navbar a:hover {
+  background-color: grey;
+  /*More effects i want to add later:
+        font increase size animation;*/
+}
+
+#theme-toggle {
+  padding: 0.5rem 1rem;
+  background: hsl(0, 0%, 0%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#theme-toggle:hover {
+  background-color: grey;
+}
+
+.toggle-container {
+  padding-top: 2rem;
+  text-align: center;
+}
+
+.section-header {
+  margin-top: 75px;
+  font-size: larger;
+  color: white;
+  user-select: none;
+}
+
+.paragraph-text {
+  font-family: PixelSans;
+  padding: 30px;
+  display: inline-block;
+  min-width: 700px;
+  max-height: fit-content;
+  overflow: auto;
+  background-color: rgb(86, 86, 86);
+  border-radius: 0.5rem;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 2);
+
+  /*animations*/
+
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.paragraph-text.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/*ABOUT ME*/
+
+.about-me-header {
+  color: white;
+  font-family: Pixelfont;
+  font-size: larger;
+  margin-top: 75px;
+  display: inline-block;
+}
+
+.about-me-name-text {
+  font-weight: bold;
+  border-right: 2px solid #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: 
+  typing 1s steps(20, end) forwards, 
+  hide-caret 1s ease-out 1s forwards ;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes hide-caret {
+  from, to {
+    border-color: transparent;
+  }
+}
+
+.about-me-container {
+  display: flex;
+  margin-top: 50px;
+}
+
+.about-me-container img {
+  object-fit: cover;
+  max-width: 300px;
+  max-height: 300px;
+  border-radius: 50%;
+  border: 3px solid #ccc;
+  margin: 30px 50px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 2);
+  user-select: none;
+}
+
+.about-me-professional-summary-container {
+  padding: 1rem;
+}
+
+.about-me-heading {
+  color: white;
+  font-family: Pixelfont;
+  font-size: larger;
+  text-align: center;
+  user-select: none;
+}
+
+.about-me-column-container {
+  display: flex;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.about-me-column-content-container {
+  flex: 1;
+  padding: 1rem;
+}
+
+.about-me-column-text {
+  font-family: PixelSans;
+  text-align: center;
+  padding: 20px;
+  display: inline-block;
+  max-height: 400px;
+  overflow: auto;
+  background-color: rgb(86, 86, 86);
+  border-radius: 0.5rem;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 2);
+}
+
+.about-me-outro {
+  padding: 1rem;
+}
+
+
+
 
 /* AI page style 2*/
 

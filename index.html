@@ -4,7 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Brandon's Website</title>
-    <link id="theme-style" rel="stylesheet" href="style_modern_tech.css" />
+    <!-- <link id="theme-style" rel="stylesheet" href="style_modern_tech.css" /> -->
+    <script>
+    (function() {
+        var currentTheme = localStorage.getItem('selectedTheme') || 'modern';
+        
+        var stylesheets = {
+            'modern': 'style_modern_tech.css',
+            'pixel': 'style_2.css'
+        };
+        
+        // Immediately write the correct stylesheet
+        document.write('<link id="theme-style" rel="stylesheet" href="' + stylesheets[currentTheme] + '">');
+    })();
+    </script>
+    
   </head>
   <body>
     <main>
@@ -17,17 +31,14 @@
           <li><a href="qualifications.html">Qualifications</a></li>
           <li><a href="service.html">Service </a></li>
           <li><a href="genai.html">GenAI</a></li>
-
         </ul>
       </nav>
       <div class="toggle-container">
         <button id="theme-toggle">Switch Theme</button>
       </div>
-      
-
 
       <section class="about-me-header">
-        <h1>Hi. I'm Brandon</h1>
+        <h1 class="about-me-name-text">Hi. I'm Brandon</h1>
       </section>
 
       <div class="about-me-container">
@@ -39,15 +50,15 @@
         <div class="about-me-professional-summary-container">
           <h1 class="about-me-heading">Professional Summary</h1>
           <p class="paragraph-text">
-            My name is Brandon Perez, and I am a student with a <b>Computer Science
-            and Applied Mathematics</b> background with a deep interest in solving
-            problems and creating meaningful solutions through technology. I am
-            fascinated by the process of transforming complex ideas into
-            practical systems, whether that means developing software that
-            simplifies everyday tasks, designing data-driven applications, or
-            experimenting with new tools to expand my skill set. What excites me
-            most about technology is its potential to connect people, streamline
-            processes, and inspire innovation.
+            My name is Brandon Perez, and I am a student with a
+            <b>Computer Science and Applied Mathematics</b> background with a
+            deep interest in solving problems and creating meaningful solutions
+            through technology. I am fascinated by the process of transforming
+            complex ideas into practical systems, whether that means developing
+            software that simplifies everyday tasks, designing data-driven
+            applications, or experimenting with new tools to expand my skill
+            set. What excites me most about technology is its potential to
+            connect people, streamline processes, and inspire innovation.
           </p>
         </div>
       </div>

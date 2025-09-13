@@ -35,7 +35,13 @@ main {
     rgb(7, 7, 7),
     rgb(112, 112, 112)
   );
-  /* background-image: radial-gradient(circle at top left, rgb(78, 172, 122), rgb(23, 15, 130)); */
+
+  /* background-image: linear-gradient(
+    to bottom,
+    hsl(0, 1%, 19%),
+    hsl(262, 37%, 13%),
+    hsl(231, 26%, 14%)
+  ); */
 }
 
 .navbar {
@@ -132,6 +138,32 @@ main {
   font-family: Orbitron;
   font-size: larger;
   margin-top: 75px;
+  display: inline-block;
+}
+
+.about-me-name-text {
+  font-weight: bold;
+  border-right: 2px solid #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: 
+  typing 1s steps(20, end) forwards, 
+  hide-caret 1s ease-out 1s forwards ;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes hide-caret {
+  from, to {
+    border-color: transparent;
+  }
 }
 
 .about-me-container {
@@ -254,8 +286,6 @@ main {
 
 /* QUALIFICATIONS PAGE*/
 
-
-
 .qualifications-main {
   max-width: 77%;
   overflow: hidden;
@@ -265,8 +295,6 @@ main {
   margin-bottom: 75px;
   padding: 0px 100px;
 }
-
-
 
 .qualifications-contact-container {
   display: flex;
@@ -374,8 +402,6 @@ main {
 }
 
 /* AI Page*/
-
-
 
 :root {
   --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -538,15 +564,7 @@ main {
   z-index: 2;
 }
 
-/* .marquee-container::before {
-  left: 0;
-  background: linear-gradient(to right, rgba(12, 12, 12, 1), transparent);
-}
 
-.marquee-container::after {
-  right: 0;
-  background: linear-gradient(to left, rgba(12, 12, 12, 1), transparent);
-} */
 
 .pokemon-marquee {
   display: flex;

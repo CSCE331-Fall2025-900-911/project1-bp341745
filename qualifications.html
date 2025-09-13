@@ -4,7 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Qualifications</title>
-    <link id="theme-style" rel="stylesheet" href="style_modern_tech.css" />
+    <!-- <link id="theme-style" rel="stylesheet" href="style_modern_tech.css" /> -->
+    <script>
+    (function() {
+        var currentTheme = localStorage.getItem('selectedTheme') || 'modern';
+        
+        var stylesheets = {
+            'modern': 'style_modern_tech.css',
+            'pixel': 'style_2.css'
+        };
+        
+        // Immediately write the correct stylesheet
+        document.write('<link id="theme-style" rel="stylesheet" href="' + stylesheets[currentTheme] + '">');
+    })();
+    </script>
   </head>
 
   <body class="qualifications-body">

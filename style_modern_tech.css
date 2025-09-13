@@ -25,6 +25,11 @@ body {
     rgb(10, 166, 187)
   );
 }
+
+::-webkit-scrollbar {
+  display: none;
+}
+
 main {
   border-radius: 1rem;
   padding: 4rem;
@@ -99,7 +104,9 @@ main {
   text-align: center;
 }
 
-.section-header {
+.section-header,
+.portfolio-summary-section-header,
+.service-section-header {
   margin-top: 75px;
   font-size: larger;
   font-family: Orbitron;
@@ -146,9 +153,8 @@ main {
   border-right: 2px solid #ffffff;
   white-space: nowrap;
   overflow: hidden;
-  animation: 
-  typing 1s steps(20, end) forwards, 
-  hide-caret 1s ease-out 1s forwards ;
+  animation: typing 1s steps(20, end) forwards,
+    hide-caret 1s ease-out 1s forwards;
 }
 
 @keyframes typing {
@@ -161,7 +167,8 @@ main {
 }
 
 @keyframes hide-caret {
-  from, to {
+  from,
+  to {
     border-color: transparent;
   }
 }
@@ -220,15 +227,12 @@ main {
   opacity: 0;
   transition: opacity 1s ease-out, transform 1s ease-out;
   transform: scale(0.8);
-
 }
 
 .about-me-column-text.show {
   opacity: 1;
   transform: scale(1);
 }
-
-
 
 .about-me-outro {
   padding: 1rem;
@@ -368,6 +372,7 @@ main {
   gap: 4rem;
   justify-content: center;
   overflow: hidden;
+  align-items: center;
 }
 
 .service-project-header {
@@ -575,8 +580,6 @@ main {
   height: 100%;
   z-index: 2;
 }
-
-
 
 .pokemon-marquee {
   display: flex;

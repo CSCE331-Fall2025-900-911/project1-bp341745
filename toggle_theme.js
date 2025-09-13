@@ -81,9 +81,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   paragraphs.forEach(p => p_observer.observe(p));
 
+  //column texts in about me page
+
   const column_texts = document.querySelectorAll(".about-me-column-text");
 
-  const observer = new IntersectionObserver(
+  const column_text_observer = new IntersectionObserver(
     (entries, obs) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -95,7 +97,25 @@ document.addEventListener("DOMContentLoaded", () => {
     { threshold: 0.3 } 
   );
 
-  column_texts.forEach(p => observer.observe(p));
+  column_texts.forEach(p => column_text_observer.observe(p));
+
+  //service project texts in service page
+  const service_project_texts = document.querySelectorAll(".service-project-text");
+
+  const service_project_observer = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+          obs.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.3 } 
+  );
+
+  service_project_texts.forEach(p => service_project_observer.observe(p));
+
 
 
 
@@ -243,33 +263,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Theme toggle functionality
-    // function initializeThemeToggle() {
-    //     const themeToggle = document.getElementById('theme-toggle');
-    //     if (!themeToggle) return;
-
-    //     let isDarkMode = true;
-
-    //     themeToggle.addEventListener('click', () => {
-    //         if (isDarkMode) {
-    //             // Switch to light mode
-    //             document.documentElement.style.setProperty('--dark-gradient', 'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 50%, #dee2e6 100%)');
-    //             document.documentElement.style.setProperty('--text-primary', '#212529');
-    //             document.documentElement.style.setProperty('--text-secondary', '#495057');
-    //             document.documentElement.style.setProperty('--card-bg', 'rgba(0, 0, 0, 0.05)');
-    //             themeToggle.textContent = 'JS- Dark Mode';
-    //             isDarkMode = false;
-    //         } else {
-    //             // Switch to dark mode
-    //             document.documentElement.style.setProperty('--dark-gradient', 'linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%)');
-    //             document.documentElement.style.setProperty('--text-primary', '#ffffff');
-    //             document.documentElement.style.setProperty('--text-secondary', '#b8c5d1');
-    //             document.documentElement.style.setProperty('--card-bg', 'rgba(255, 255, 255, 0.1)');
-    //             themeToggle.textContent = 'JS- Neural Mode';
-    //             isDarkMode = true;
-    //         }
-    //     });
-    // }
+   
 
     // Add mouse follow effect for cards (premium interactive effect)
     function initializeMouseEffects() {
@@ -289,7 +283,6 @@ document.addEventListener("DOMContentLoaded", () => {
     function initialize() {
         createParticles();
         initializePokemonCards();
-        initializeThemeToggleWithReload();
         initializeMouseEffects();
     }
 

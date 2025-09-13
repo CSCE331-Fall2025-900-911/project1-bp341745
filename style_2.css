@@ -68,6 +68,19 @@ main {
   padding-top: 2rem;
   text-align: center;
 }
+#theme-toggle {
+  padding: 0.5rem 1rem;
+  font-family: Pixelfont;
+  background-color: rgb(0, 2, 122);
+  box-shadow: 0 4px 8px #0062be;
+
+  color: rgb(0, 240, 188);
+  cursor: pointer;
+}
+#theme-toggle:hover{
+  background-color: rgb(26, 0, 172);
+  color: #068e97;
+}
 
 .section-header {
   margin-top: 75px;
@@ -450,146 +463,490 @@ main {
 
 /* AI page style 2*/
 
-.ai-body {
-  margin: 0;
-  font-family: Pixelfont;
-  background: #88c070
-    url("https://www.transparenttextures.com/patterns/pixel-weave.png");
-  color: #111;
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* Root variables - GBA Pokémon color palette */
+:root {
+    --gba-green-dark: #0f380f;
+    --gba-green-medium: #306230;
+    --gba-green-light: #8bac0f;
+    --gba-green-lightest: #9bbc0f;
+    --gba-cream: #faf7da;
+    --gba-blue: #1e3a8a;
+    --gba-red: #dc2626;
+    --gba-yellow: #fbbf24;
+    --gba-purple: #7c3aed;
+    --gba-orange: #ea580c;
+    --pixel-border: 2px;
 }
 
+/* Base body styling */
+.ai-body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Press Start 2P', 'Courier New', monospace;
+    font-size: 8px;
+    line-height: 1.6;
+    background: var(--gba-green-lightest);
+    color: var(--gba-green-dark);
+    overflow-x: hidden;
+    
+    /* Pixel-perfect rendering */
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-crisp-edges;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+/* Animated background particles - Game Boy style */
+.bg-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: 
+        radial-gradient(circle at 20px 20px, var(--gba-green-light) 2px, transparent 2px),
+        radial-gradient(circle at 40px 40px, var(--gba-green-medium) 1px, transparent 1px);
+    background-size: 60px 60px, 80px 80px;
+    animation: pixelFloat 20s linear infinite;
+    opacity: 0.3;
+}
+
+@keyframes pixelFloat {
+    0% { background-position: 0 0, 0 0; }
+    100% { background-position: 60px 60px, -80px 80px; }
+}
+
+/* Main container */
+.pokemon-main {
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Navigation - GBA style menu */
 .ai-navbar {
-  background: #ff0000;
-  padding: 0.5rem;
-  border-bottom: 4px solid #000;
+    background: var(--gba-green-dark);
+    border-bottom: var(--pixel-border) solid var(--gba-green-light);
+    padding: 8px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    
+    /* Pixelated border effect */
+    box-shadow: 
+        0 var(--pixel-border) 0 var(--gba-green-medium),
+        0 4px 0 var(--gba-green-light);
 }
 
 .ai-navbar ul {
-  display: flex;
-  justify-content: center;
-  list-style: none;
-  gap: 1rem;
-  margin: 0;
-  padding: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
 }
 
-.ai-navbar a {
-  text-decoration: none;
-  color: white;
-  font-size: 12px;
+.ai-navbar li a {
+    color: var(--gba-cream);
+    text-decoration: none;
+    padding: 8px 12px;
+    background: var(--gba-green-medium);
+    border: var(--pixel-border) solid var(--gba-green-light);
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    
+    /* GBA button effect */
+    box-shadow: 
+        inset -2px -2px 0 var(--gba-green-dark),
+        inset 2px 2px 0 var(--gba-green-light);
+    
+    transition: all 0.1s ease;
 }
 
+.ai-navbar li a:hover {
+    background: var(--gba-green-light);
+    color: var(--gba-green-dark);
+    transform: translate(1px, 1px);
+    box-shadow: 
+        inset -1px -1px 0 var(--gba-green-dark),
+        inset 1px 1px 0 var(--gba-cream);
+}
+
+/* Header styling */
 .pokemon-header {
-  text-align: center;
-  padding: 1rem;
-  background: #ffcc00;
-  border-bottom: 4px solid #000;
+    text-align: center;
+    padding: 32px 16px;
+    background: linear-gradient(135deg, var(--gba-green-lightest), var(--gba-cream));
+    border-bottom: 4px solid var(--gba-green-dark);
+    position: relative;
 }
 
-#theme-toggle {
-  padding: 0.5rem 1rem;
-  font-family: Pixelfont;
-  background-color: rgb(0, 2, 122);
-  box-shadow: 0 4px 8px #0062be;
-
-  color: rgb(0, 240, 188);
-  cursor: pointer;
-}
-#theme-toggle:hover{
-  background-color: rgb(26, 0, 172);
-  color: #068e97;
-}
-
-.pokemon-team {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  padding: 1rem;
-  align-items: flex-start;
-  flex-wrap: wrap; /* wrap on small screens */
+.pokemon-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        repeating-linear-gradient(
+            90deg,
+            transparent 0px,
+            var(--gba-green-light) 1px,
+            var(--gba-green-light) 2px,
+            transparent 2px,
+            transparent 8px
+        );
+    opacity: 0.1;
+    z-index: 1;
 }
 
-/* Card shell */
+.pokemon-header h1 {
+    font-size: 16px;
+    margin: 0 0 16px 0;
+    color: var(--gba-green-dark);
+    text-shadow: 2px 2px 0 var(--gba-green-light);
+    position: relative;
+    z-index: 2;
+}
+
+.pokemon-header p {
+    font-size: 10px;
+    color: var(--gba-green-medium);
+    max-width: 600px;
+    margin: 0 auto 24px;
+    line-height: 1.8;
+    position: relative;
+    z-index: 2;
+}
+
+/* Theme toggle button - Pokéball style */
+.theme-toggle {
+    background: linear-gradient(135deg, var(--gba-red) 50%, var(--gba-cream) 50%);
+    border: 3px solid var(--gba-green-dark);
+    color: var(--gba-cream);
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px;
+    padding: 12px 16px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 2;
+    
+    /* Pokéball button effect */
+    border-radius: 50px;
+    width: 120px;
+    height: 40px;
+    
+    box-shadow: 
+        0 4px 0 var(--gba-green-dark),
+        inset 0 2px 0 rgba(255,255,255,0.3);
+}
+
+.theme-toggle::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    background: var(--gba-cream);
+    border: 2px solid var(--gba-green-dark);
+    border-radius: 50%;
+}
+
+.theme-toggle:hover {
+    transform: translateY(2px);
+    box-shadow: 
+        0 2px 0 var(--gba-green-dark),
+        inset 0 2px 0 rgba(255,255,255,0.3);
+}
+
+/* Marquee container */
+.marquee-container {
+    padding: 24px 0;
+    background: var(--gba-green-lightest);
+    overflow: hidden;
+    border-top: 2px solid var(--gba-green-dark);
+    border-bottom: 2px solid var(--gba-green-dark);
+}
+
+/* Pokemon marquee animation */
+.pokemon-marquee {
+    display: flex;
+    animation: scroll 60s linear infinite;
+    gap: 16px;
+}
+
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Pokemon cards - Game Boy cartridge style */
 .pokemon-card {
-  width: 210px; /* card width */
-  box-sizing: border-box;
-  padding: 12px;
-  background: #fff;
-  border: 3px solid #000; /* pixel-outline look */
-  text-align: center;
-  font-family: "Press Start 2P", monospace;
-  color: #111;
-  position: relative;
-  /* optional retro shadow */
-  box-shadow: 6px 6px 0 #000;
-  /* ensure children stack vertically */
-  display: flex;
-  flex-direction: column;
+    min-width: 200px;
+    background: var(--gba-cream);
+    border: 3px solid var(--gba-green-dark);
+    padding: 12px;
+    text-align: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    position: relative;
+    
+    /* GBA cartridge shadow */
+    box-shadow: 
+        4px 4px 0 var(--gba-green-medium),
+        8px 8px 0 var(--gba-green-light);
+    
+    transition: all 0.2s ease;
 }
 
-/* Pseudo-element used for the sprite image at the top */
 .pokemon-card::before {
-  content: "";
-  display: block;
-  width: 100%;
-  height: 150px; /* sprite container height — adjust to taste */
-  background-repeat: no-repeat;
-  background-position: center top;
-  background-size: contain; /* keeps sprite aspect ratio */
-  margin-bottom: 10px; /* gap between sprite and text */
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    height: 8px;
+    background: var(--gba-green-medium);
+    border: 3px solid var(--gba-green-dark);
+    border-bottom: none;
 }
 
-/* assign the actual sprite URLs using a CSS variable on each card ID */
-#pikachu-card {
-  --sprite: url("assets/pixel_pikachu.jpg");
-}
-#charmander-card {
-  --sprite: url("assets/pixel_charmander.png");
-}
-#squirtle-card {
-  --sprite: url("assets/pixel_squirtle.png");
-}
-
-/* apply the sprite variable to the pseudo-element */
-.pokemon-card::before {
-  background-image: var(--sprite);
+.pokemon-card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 
+        6px 6px 0 var(--gba-green-medium),
+        10px 10px 0 var(--gba-green-light);
 }
 
 .pokemon-card img {
-  display: none;
+    width: 80px;
+    height: 80px;
+    margin-bottom: 8px;
+    border: 2px solid var(--gba-green-dark);
+    background: var(--gba-green-lightest);
+    padding: 4px;
+    
+    /* Pixelate the Pokemon images */
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-crisp-edges;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
 }
 
-/* text spacing / reset */
-.pokemon-card h2 {
-  margin: 0 0 6px 0;
-  font-size: 14px;
+.pokemon-card h3 {
+    font-size: 10px;
+    margin: 8px 0;
+    color: var(--gba-green-dark);
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.pokemon-card p {
-  margin: 0;
-  font-size: 11px;
-  line-height: 1.2;
+/* Pokemon type badges */
+.pokemon-type {
+    display: inline-block;
+    padding: 4px 8px;
+    margin: 4px 0;
+    font-size: 6px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 2px solid var(--gba-green-dark);
+    color: var(--gba-cream);
+    font-weight: bold;
 }
 
-@media (max-width: 560px) {
-  .pokemon-team {
-    flex-direction: column;
-    align-items: center;
-  }
-  .pokemon-card {
-    width: 85%;
-    max-width: 300px;
-  }
-  .pokemon-card::before {
-    height: 180px;
-  }
+.type-electric { background: var(--gba-yellow); color: var(--gba-green-dark); }
+.type-fire { background: var(--gba-red); }
+.type-water { background: var(--gba-blue); }
+.type-grass { background: var(--gba-green-medium); }
+.type-psychic { background: var(--gba-purple); }
+.type-normal { background: var(--gba-green-light); color: var(--gba-green-dark); }
+
+/* Pokemon stats - Game Boy style */
+.pokemon-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+    gap: 4px;
 }
 
+.pokemon-stats span {
+    background: var(--gba-green-dark);
+    color: var(--gba-cream);
+    padding: 2px 4px;
+    font-size: 6px;
+    border: 1px solid var(--gba-green-light);
+    flex: 1;
+    text-align: center;
+}
+
+/* Modal - GBA dialog box style */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(15, 56, 15, 0.8);
+}
+
+.modal img{
+  max-width: 100% !important;
+    max-height: 200px !important;
+    width: auto !important;
+    height: auto !important;
+    object-fit: contain;
+}
+
+.modal-content {
+    background: var(--gba-cream);
+    margin: 5% auto;
+    padding: 0;
+    border: 4px solid var(--gba-green-dark);
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    
+    /* GBA dialog shadow */
+    box-shadow: 
+        8px 8px 0 var(--gba-green-medium),
+        16px 16px 0 var(--gba-green-light);
+}
+
+.modal-content::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    height: 16px;
+    background: var(--gba-green-dark);
+    border: 4px solid var(--gba-green-light);
+    border-bottom: none;
+}
+
+.close {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    color: var(--gba-cream);
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.close:hover {
+    color: var(--gba-yellow);
+}
+
+#modal-body {
+    padding: 32px 24px 24px;
+    text-align: center;
+}
+
+/* Footer - GBA style */
 .pokemon-footer {
-  text-align: center;
-  padding: 1rem;
-  margin-top: 1rem;
-  background: #222;
-  color: #fff;
-  border-top: 4px solid #000;
+    background: var(--gba-green-dark);
+    color: var(--gba-cream);
+    text-align: center;
+    padding: 16px;
+    font-size: 8px;
+    border-top: 2px solid var(--gba-green-light);
+}
+
+.claude-signature {
+    margin-top: 8px;
+    color: var(--gba-green-light);
+    font-size: 6px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .ai-navbar ul {
+        gap: 8px;
+    }
+    
+    .ai-navbar li a {
+        padding: 6px 8px;
+        font-size: 6px;
+    }
+    
+    .pokemon-header h1 {
+        font-size: 12px;
+    }
+    
+    .pokemon-header p {
+        font-size: 8px;
+    }
+    
+    .pokemon-card {
+        min-width: 160px;
+    }
+    
+    .pokemon-card img {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+@media (max-width: 480px) {
+    .ai-body {
+        font-size: 6px;
+    }
+    
+    .pokemon-header h1 {
+        font-size: 10px;
+    }
+    
+    .pokemon-card {
+        min-width: 140px;
+        padding: 8px;
+    }
+    
+    .pokemon-card img {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+/* Hover animations - GBA style */
+.pokemon-card:hover .pokemon-type {
+    animation: typeGlow 0.5s ease-in-out;
+}
+
+@keyframes typeGlow {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* Screen scan lines effect (subtle) */
+.pokemon-main::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent 0px,
+        rgba(15, 56, 15, 0.03) 1px,
+        rgba(15, 56, 15, 0.03) 2px,
+        transparent 2px,
+        transparent 4px
+    );
+    pointer-events: none;
+    z-index: 50;
 }

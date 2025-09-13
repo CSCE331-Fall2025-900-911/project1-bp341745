@@ -33,17 +33,16 @@ main {
 
 .navbar ul {
   list-style-type: none;
-  background-color: black;
   padding: 0px;
   margin: 0px;
   overflow: hidden;
-  border-radius: 0.5rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 2);
+  box-shadow: 0 4px 8px #0062be;
+  background-color: rgb(0, 2, 122);
   user-select: none;
 }
 
 .navbar a {
-  color: white;
+  color: rgb(0, 240, 188);
   text-decoration: none;
   padding: 30px;
   display: block;
@@ -58,23 +57,12 @@ main {
 }
 
 .navbar a:hover {
-  background-color: grey;
+  background-color: rgb(26, 0, 172);
+  color: #068e97;
   /*More effects i want to add later:
         font increase size animation;*/
 }
 
-#theme-toggle {
-  padding: 0.5rem 1rem;
-  background: hsl(0, 0%, 0%);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-#theme-toggle:hover {
-  background-color: grey;
-}
 
 .toggle-container {
   padding-top: 2rem;
@@ -132,7 +120,7 @@ main {
 
 .about-me-name-text {
   font-weight: bold;
-  border-right: 2px solid #ffffff;
+  border-right: 2px solid #00b5bb;
   white-space: nowrap;
   overflow: hidden;
   animation: typing 1s steps(20, end) forwards,
@@ -164,10 +152,9 @@ main {
   object-fit: cover;
   max-width: 300px;
   max-height: 300px;
-  border-radius: 50%;
-  border: 3px solid #ccc;
+  border: 3px solid #0013b9;
   margin: 30px 50px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 2);
+  box-shadow: 0 4px 8px hsl(209, 100%, 50%);
   user-select: none;
 }
 
@@ -457,9 +444,8 @@ main {
   margin-right: 30px;
   user-select: none;
   object-fit: cover;
-  border-radius: 2rem;
-  border: 3px solid #ccc;
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 5);
+  border: 3px solid rgba(255, 0, 255, 0.5);
+  box-shadow: 0 8px 12px rgba(255, 0, 255, 0.5);
 }
 
 /* AI page style 2*/
@@ -502,11 +488,16 @@ main {
 
 #theme-toggle {
   padding: 0.5rem 1rem;
-  font-family: inherit;
-  background: #0070f3;
-  color: white;
-  border: 3px solid black;
+  font-family: Pixelfont;
+  background-color: rgb(0, 2, 122);
+  box-shadow: 0 4px 8px #0062be;
+
+  color: rgb(0, 240, 188);
   cursor: pointer;
+}
+#theme-toggle:hover{
+  background-color: rgb(26, 0, 172);
+  color: #068e97;
 }
 
 .pokemon-team {
@@ -564,7 +555,6 @@ main {
   background-image: var(--sprite);
 }
 
-/* hide the HTML <img> when in pixel-theme */
 .pokemon-card img {
   display: none;
 }

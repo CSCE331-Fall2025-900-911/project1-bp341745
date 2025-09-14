@@ -1,244 +1,772 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokémon AI Showcase</title>
-    <script>
-    (function() {
-        var currentTheme = localStorage.getItem('selectedTheme') || 'modern';
-        
-        var stylesheets = {
-            'modern': 'style_modern_tech.css',
-            'pixel': 'style_2.css'
-        };
-        
-        // Immediately write the correct stylesheet
-        document.write('<link id="theme-style" rel="stylesheet" href="' + stylesheets[currentTheme] + '">');
-    })();
-    </script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pokémon Gallery — Gen III–V</title>
+  <style>
+    /* ---------- PAGE THEME ---------- */
+    :root{
+      --bg:#0b1221;
+      --card:#0f1724;
+      --accent:#ffcb05; /* Pikachu yellow-ish for accents */
+      --muted:#93a7c7;
+      --glass: rgba(255,255,255,0.04);
+      --glass-2: rgba(255,255,255,0.02);
+      --pop-shadow: 0 10px 30px rgba(2,6,23,0.65);
+      --radius:16px;
+      --glass-border: rgba(255,255,255,0.06);
+      font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, system-ui, sans-serif;
+    }
+
+    html,body{
+      height:100%;
+      margin:0;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(255,195,0,0.03), transparent),
+                  linear-gradient(180deg, #061026 0%, #071224 60%, #021018 100%);
+      color:#e6eef9;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      overflow-y:scroll;
+      background-color:var(--bg);
+    }
+
+    /* ---------- Animated background pokeballs ---------- */
+    .bg-elements{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:0;
+      overflow:hidden;
+      mix-blend-mode:screen;
+    }
+    .pokeball{
+      position:absolute;
+      width:160px;
+      height:160px;
+      border-radius:50%;
+      background: radial-gradient(circle at 40% 30%, rgba(255,255,255,0.12), rgba(255,255,255,0.02) 40%),
+                  linear-gradient(180deg, rgba(255,255,255,0.05), rgba(0,0,0,0.06));
+      border:6px solid rgba(255,255,255,0.04);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.6), inset 0 -8px 24px rgba(255,255,255,0.02);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      transform: translate3d(0,0,0);
+      opacity:0.08;
+    }
+    .pokeball::before{
+      content: "";
+      position:absolute;
+      left:0; right:0; top:50%;
+      height:8px;
+      transform:translateY(-50%);
+      background: linear-gradient(90deg, rgba(0,0,0,0.25), rgba(255,255,255,0.12));
+      border-radius:4px;
+      margin:0 18px;
+    }
+    .pokeball::after{
+      content:"";
+      width:36px;
+      height:36px;
+      border-radius:50%;
+      background: radial-gradient(circle at 30% 30%, #fff, rgba(255,255,255,0.85) 10%, rgba(255,255,255,0.15) 11%);
+      position:absolute;
+      border:4px solid rgba(0,0,0,0.35);
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
+    }
+    /* animate pokeballs differently */
+    @keyframes floatSlow {
+      0% { transform: translate3d(0, 0, 0) rotate(0deg); opacity:0.06; }
+      50% { transform: translate3d(14px, -28px, 0) rotate(8deg); opacity:0.12; }
+      100% { transform: translate3d(0, 0, 0) rotate(0deg); opacity:0.06; }
+    }
+    @keyframes floatWide {
+      0% { transform: translate3d(0, 0, 0) rotate(0deg); opacity:0.04; }
+      50% { transform: translate3d(-40px, -60px, 0) rotate(-14deg); opacity:0.09; }
+      100% { transform: translate3d(0, 0, 0) rotate(0deg); opacity:0.04; }
+    }
+
+    /* positions */
+    .pokeball.pb1{ left:6%; top:8%; animation: floatWide 14s ease-in-out infinite; width:260px; height:260px; opacity:0.03;}
+    .pokeball.pb2{ right:6%; bottom:6%; animation: floatSlow 10s ease-in-out infinite; transform-origin:center; }
+    .pokeball.pb3{ left:30%; bottom:18%; animation: floatWide 18s ease-in-out infinite; width:120px; height:120px; opacity:0.04;}
+    .pokeball.pb4{ right:22%; top:22%; animation: floatSlow 16s ease-in-out infinite; width:140px; height:140px; opacity:0.05;}
+
+    /* ---------- Header & intro ---------- */
+    header{
+      position:relative;
+      z-index:2;
+      padding:28px 36px;
+      display:flex;
+      gap:18px;
+      align-items:center;
+      border-bottom:1px solid rgba(255,255,255,0.02);
+      margin-bottom:18px;
+    }
+    .logo{
+      width:64px;
+      height:64px;
+      border-radius:12px;
+      background: linear-gradient(180deg,#ffcb05, #ffa500);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#111;
+      font-weight:800;
+      font-size:18px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+      border: 2px solid rgba(255,255,255,0.18);
+    }
+    h1{
+      margin:0;
+      font-size:22px;
+      letter-spacing:0.6px;
+      color: #fff;
+    }
+    p.lead{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    /* reactive intro paragraph */
+    .intro{
+      margin:22px 36px;
+      padding:18px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:12px;
+      border:1px solid var(--glass-border);
+      width:calc(100% - 72px);
+      max-width:1200px;
+      z-index:2;
+      transition: transform .28s cubic-bezier(.2,.9,.3,1), box-shadow .28s;
+      box-shadow: 0 6px 20px rgba(2,6,23,0.45);
+    }
+    .intro:hover{
+      transform: translateY(-6px) scale(1.005);
+      box-shadow: 0 18px 50px rgba(2,6,23,0.6);
+    }
+    .intro p{ margin:8px 0; color:var(--muted); line-height:1.45; font-size:14px; }
+
+    /* ---------- GRID ---------- */
+    .grid-wrap{
+      position:relative;
+      z-index:2;
+      padding:28px 36px 90px 36px;
+      max-width:1400px;
+      margin:0 auto;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap:18px;
+      align-items:start;
+    }
+    @media (max-width:1100px){
+      .grid{ grid-template-columns: repeat(4,1fr); }
+    }
+    @media (max-width:860px){
+      .grid{ grid-template-columns: repeat(3,1fr); }
+    }
+    @media (max-width:640px){
+      .grid{ grid-template-columns: repeat(2,1fr); }
+    }
+
+    /* ---------- CARD / MODAL PREVIEW ---------- */
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));
+      border-radius:var(--radius);
+      padding:14px;
+      min-height:150px;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      justify-content:space-between;
+      border:1px solid var(--glass-border);
+      transition: transform .22s cubic-bezier(.2,.9,.3,1), box-shadow .22s, filter .22s;
+      transform-origin:center;
+      cursor:pointer;
+      position:relative;
+      overflow:visible;
+      perspective:900px;
+      will-change: transform;
+      z-index:1;
+      backface-visibility:hidden;
+    }
+
+    /* idle motion (subtle slow rotation/tilt) */
+    @keyframes idleTilt {
+      0%{ transform: rotateX(0.6deg) rotateY(-1deg) translateZ(0); }
+      50%{ transform: rotateX(-0.6deg) rotateY(1deg) translateZ(2px); }
+      100%{ transform: rotateX(0.6deg) rotateY(-1deg) translateZ(0); }
+    }
+    .card .idle{
+      display:block;
+      animation: idleTilt 6s ease-in-out infinite;
+      transform-style:preserve-3d;
+    }
+
+    /* hover enlarge */
+    .card:hover{
+      transform: translateY(-10px) scale(1.06);
+      box-shadow: 0 26px 60px rgba(2,6,23,0.6);
+      z-index:3;
+    }
+
+    /* .card .badge{
+      width:64px;
+      height:64px;
+      border-radius:12px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:800;
+      font-size:20px;
+      color:#071622;
+      background:linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,255,255,0.85));
+      box-shadow: 0 8px 18px rgba(0,0,0,0.35);
+      border:1px solid rgba(0,0,0,0.12);
+    } */
+
+    .card h3{
+      margin:0;
+      font-size:15px;
+      letter-spacing:0.6px;
+    }
+    .card .type-row{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+
+    .card img{
+        width: 100%;
+        height: 100%;
+    }
+
+    .card-inner {
+      width: 100px;
+      height: 100px;
+      border: 3px solid #333;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      transform-style: preserve-3d;
+    }
+    .type-pill{
+      padding:6px 10px;
+      border-radius:999px;
+      font-weight:700;
+      font-size:12px;
+      color:#071622;
+      background:linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.80));
+      border:1px solid rgba(0,0,0,0.08);
+      box-shadow:0 8px 14px rgba(0,0,0,0.16);
+    }
+
+    .mini-desc{
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.25;
+    }
+
+    /* small decorative pokedex corner */
+    .pokedex-corner{
+      position:absolute;
+      top:10px;
+      right:10px;
+      font-size:11px;
+      color:var(--muted);
+      background:var(--glass-2);
+      padding:6px 8px;
+      border-radius:8px;
+      border:1px solid var(--glass-border);
+      transform:translateZ(12px);
+    }
+
+    /* ---------- POPUP / DETAIL ---------- */
+    .overlay{
+      position:fixed;
+      inset:0;
+      z-index:1200;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      backdrop-filter: blur(8px) saturate(120%);
+      background: linear-gradient(180deg, rgba(2,6,23,0.6), rgba(2,6,23,0.75));
+      transition: opacity .28s ease;
+    }
+    .overlay.show{ display:flex; }
+
+    /* floating animated clone (used for hero animation from card to center) */
+    .floating{
+      position:fixed;
+      z-index:1210;
+      border-radius:var(--radius);
+      will-change: transform, width, height, left, top, opacity;
+      box-shadow: var(--pop-shadow);
+      overflow:hidden;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.04));
+      border:1px solid var(--glass-border);
+    }
+
+    .detail{
+      width:min(920px, 92%);
+      max-height:88%;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));
+      border-radius:18px;
+      padding:22px;
+      overflow:auto;
+      box-shadow: var(--pop-shadow);
+      transform-origin:center;
+      border:1px solid rgba(255,255,255,0.04);
+    }
+    .detail-body{
+      display:flex;
+      gap:20px;
+      align-items:flex-start;
+    }
+    .detail-left{
+      min-width:260px;
+      max-width:320px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      align-items:center;
+    }
+    .mon-art{
+      width:220px;
+      height:220px;
+      border-radius:18px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:36px;
+      font-weight:900;
+      color:#071622;
+      background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,255,255,0.9));
+      border:1px solid rgba(0,0,0,0.12);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.45);
+    }
+    .close-btn{
+      margin-left:auto;
+      background:transparent;
+      border:0;
+      color:var(--muted);
+      font-size:18px;
+      cursor:pointer;
+    }
+    .stat-row{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      justify-content:space-between;
+      width:100%;
+    }
+    .stat{
+      flex:1;
+      background:var(--glass);
+      border-radius:12px;
+      padding:8px 10px;
+      border:1px solid var(--glass-border);
+      font-weight:700;
+      color:#fff;
+      text-align:center;
+    }
+
+    .bio{
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.5;
+    }
+
+    /* animated entrance for detail info */
+    .detail.show-contents{
+      animation: popIn .48s cubic-bezier(.2,.95,.25,1);
+    }
+    @keyframes popIn {
+      0%{ transform: scale(.92) translateY(20px); opacity:0; filter:blur(6px); }
+      100%{ transform: scale(1) translateY(0); opacity:1; filter:blur(0); }
+    }
+
+    /* small decorative badges at bottom (types) */
+    .type-list{ display:flex; gap:8px; flex-wrap:wrap; }
+
+    /* ---------- small responsive touches ---------- */
+    footer{ padding:40px 36px; color:var(--muted); text-align:center; z-index:2; }
+    a.small{ color:var(--accent); text-decoration:none; font-weight:700; }
+
+    /* accessible focus */
+    .card:focus{ outline:3px solid rgba(255,203,5,0.18); outline-offset:4px; }
+
+
+    .navbar {
+  display: flex;
+  justify-content: center;
+}
+
+.navbar ul {
+  list-style-type: none;
+  background-color: 071622;
+  padding: 0px;
+  margin: 0px;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 2);
+  user-select: none;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  padding: 30px;
+  display: block;
+  text-align: center;
+}
+
+.navbar li {
+  float: left;
+  overflow: hidden;
+  font-size: large;
+  font-family:  "Segoe UI", Roboto, "Helvetica Neue", Arial, system-ui, sans-serif;
+}
+
+.navbar a:hover {
+  background-color: grey;
+  /*More effects i want to add later:
+        font increase size animation;*/
+}
+  </style>
 </head>
-<body class="ai-body">
+<body>
+  <div class="bg-elements" aria-hidden="true">
+    <div class="pokeball pb1"></div>
+    <div class="pokeball pb2"></div>
+    <div class="pokeball pb3"></div>
+    <div class="pokeball pb4"></div>
+  </div>
 
-    <!-- Animated Background Particles -->
-    <div class="bg-particles" id="particles"></div>
+  <header>
+    <div class="logo" aria-hidden="true">PKMN</div>
+    <div>
+      <h1>Generations III-V: Interactive Pokémon Grid</h1>
+      <p class="lead">Reactive modals, subtle idle motion, and animated popups — inspired by modern product UIs and Pokémon flair.</p>
+    </div>
+  </header>
 
-    <main class="pokemon-main">
-        <nav class="ai-navbar">
-            <ul>
-                <li><a href="index.html">About Me</a></li>
-                <li><a href="portfolio.html">Portfolio</a></li>
-                <li><a href="qualifications.html">Qualifications</a></li>
-                <li><a href="service.html">Service</a></li>
-                <li><a href="ai.html">GenAI</a></li>
-            </ul>
-        </nav>
+  <main>
+    <section class="intro" aria-hidden="false">
+      <p><strong>Prompt:</strong> I want to make an html page. This page will include UI elements that are reactive similar to that of big tech companies. The content/theme of this page is based on Pokemon franchise. You will present a number of pokemon of your choosing from generations 3-5 (at least 20 at most 30). Each pokemon should be presented in a reactive modal. There is a grid that contains each modal (a 5 column grid with n rows, where n is any number to fit all the modals). Each modal is constantly in an "idle" position, like its subtly moving on its axis every few seconds slowly, and i can scroll through all of the modals in the grid. Each modal will have a hover event which will enlarge the modal. The modal will have a click event which will open the modal with an animation. The animation should have the modal spin and come towards the user on the screen, and then there will be a pop-up that contains details that would be too distracting to the user (like HP, attack, defense, biography, dex entry, etc.). There should be moving geometric elements in the background of the body (pokeballs perhaps) of the page and the font style should feel part of the pokemon style as well, including any decorative styling. Include any additional elements that feel part of the pokemon theme style. All CSS you do should be inline or part of a script tag in the html page. Add paragraph elements in appropriate places which contain descriptions and style these as well to be reactive on hover.
+    </section>
 
-        <header class="pokemon-header">
-            <h1>Claude's Pokémon AI Showcase</h1>
-            <p>Experience the fusion of artificial intelligence and Pokémon mastery. Each creature represents a unique aspect of computational excellence and digital evolution.</p>
-            <button class="theme-toggle" id="theme-toggle"> Switch Theme</button>
-        </header>
+    <nav class="navbar">
+        <ul>
+          <li>
+            <a href="index.html"> About Me </a>
+          </li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="qualifications.html">Qualifications</a></li>
+          <li><a href="service.html">Service </a></li>
+          <li><a href="genai.html">GenAI</a></li>
+        </ul>
+      </nav>
 
-        <div class="marquee-container">
-            <div class="pokemon-marquee" id="pokemon-marquee">
-                <!-- First set of cards -->
-                <div class="pokemon-card" data-pokemon="pikachu">
-                    <img src="https://img.pokemondb.net/artwork/large/pikachu.jpg" alt="Pikachu">
-                    <h3>Pikachu</h3>
-                    <div class="pokemon-type type-electric">Electric ⚡</div>
-                    <div class="pokemon-stats">
-                        <span>HP: 35</span>
-                        <span>ATK: 55</span>
-                        <span>DEF: 40</span>
-                    </div>
-                </div>
+    <section class="grid-wrap" role="region" aria-label="Pokémon grid">
+      <div id="grid" class="grid" tabindex="0">
+        <!-- Cards are generated by script -->
+      </div>
+    </section>
+  </main>
 
-                <div class="pokemon-card" data-pokemon="charmander">
-                    <img src="https://img.pokemondb.net/artwork/large/charmander.jpg" alt="Charmander">
-                    <h3>Charmander</h3>
-                    <div class="pokemon-type type-fire">Fire 🔥</div>
-                    <div class="pokemon-stats">
-                        <span>HP: 39</span>
-                        <span>ATK: 52</span>
-                        <span>DEF: 43</span>
-                    </div>
-                </div>
+  <!-- overlay + dynamic floating clone used for hero animation -->
+  <div id="overlay" class="overlay" role="dialog" aria-hidden="true" aria-modal="true">
+    <!-- floating clone will be inserted here by JS -->
+    <div id="detail" class="detail" role="document" aria-hidden="true">
+      <!-- contents set by JS -->
+    </div>
+  </div>
 
-                <div class="pokemon-card" data-pokemon="squirtle">
-                    <img src="https://img.pokemondb.net/artwork/large/squirtle.jpg" alt="Squirtle">
-                    <h3>Squirtle</h3>
-                    <div class="pokemon-type type-water">Water 💧</div>
-                    <div class="pokemon-stats">
-                        <span>HP: 44</span>
-                        <span>ATK: 48</span>
-                        <span>DEF: 65</span>
-                    </div>
-                </div>
+  <footer>
+    Made as a UI prototype — responsive grid & animated modal interactions. Save this file as <code>pages/pokemon_gallery.html</code>.
+  </footer>
 
-                <div class="pokemon-card" data-pokemon="bulbasaur">
-                    <img src="https://img.pokemondb.net/artwork/large/bulbasaur.jpg" alt="Bulbasaur">
-                    <h3>Bulbasaur</h3>
-                    <div class="pokemon-type type-grass">Grass 🌿</div>
-                    <div class="pokemon-stats">
-                        <span>HP: 45</span>
-                        <span>ATK: 49</span>
-                        <span>DEF: 49</span>
-                    </div>
-                </div>
+  <script>
+    /* ---------- DATA: 24 Pokémon (Gen 3-5) ---------- */
+    const mons = [
+      { id: 252, name: "Treecko", gen:3, types:["Grass"], hp:40, atk:45, def:35, bio:"A nimble Grass-type starter. Agile and quick to climb branches.", dex:"Treecko's tail is more than balance — it senses humidity in the air."},
+      { id: 255, name: "Torchic", gen:3, types:["Fire"], hp:45, atk:60, def:40, bio:"A small, warm-feathered Fire starter. Loves to run and hop.", dex:"When Torchic runs, its down ignites slightly from internal heat."},
+      { id: 258, name: "Mudkip", gen:3, types:["Water"], hp:50, atk:70, def:50, bio:"A sturdy Water starter that can sense changes in the ground.", dex:"Mudkip uses its fin to sense water currents and vibrations."},
+      { id: 280, name: "Ralts", gen:3, types:["Psychic","Fairy"], hp:28, atk:25, def:25, bio:"Sensitive to human emotions, it will hide if bad feelings are near.", dex:"When Ralts senses kindness it will appear from hiding."},
+      { id: 282, name: "Gardevoir", gen:3, types:["Psychic","Fairy"], hp:68, atk:65, def:65, bio:"An elegant protector of trainers, powerful empathy-based powers.", dex:"Gardevoir will shelter its trainer with its own body if it senses danger."},
+      { id: 283, name: "Surskit", gen:3, types:["Bug","Water"], hp:40, atk:30, def:32, bio:"Skates on pond surfaces; keeps away from strong wakes.", dex:"Surskit glides across water using its long legs like skates."},
+      { id: 303, name: "Mawile", gen:3, types:["Steel","Fairy"], hp:50, atk:85, def:85, bio:"Has a huge jaw on its head used to scare foes; deceptively powerful.", dex:"Mawile's jaw-like appendage is surprisingly strong and cunning."},
+      { id: 306, name: "Aggron", gen:3, types:["Steel","Rock"], hp:70, atk:110, def:180, bio:"Strong armor scales protect it; it can survive extreme blows.", dex:"Aggron can knock down buildings with a single charge."},
+      { id: 330, name: "Flygon", gen:3, types:["Ground","Dragon"], hp:80, atk:100, def:80, bio:"Winged dragonfly-like Pokémon; its wings make a sound like bells.", dex:"Flygon's wings make a whispering sound across the dunes."},
+      { id: 334, name: "Altaria", gen:3, types:["Dragon","Flying"], hp:75, atk:70, def:90, bio:"Cloud-like wings and soft voice charm those nearby.", dex:"Altaria's singing mingles with the clouds it flies among."},
+      { id: 376, name: "Metagross", gen:3, types:["Steel","Psychic"], hp:80, atk:135, def:130, bio:"A brainy pseudo-robot Pokémon formed from four Meteorites.", dex:"Metagross processes data at tremendous speed with its four brains."},
+      { id: 373, name: "Salamence", gen:3, types:["Dragon","Flying"], hp:95, atk:135, def:80, bio:"Learns to fly once it can control its rage; fierce and proud.", dex:"When Salamence gains wings, it soars with blazing speed."},
+      { id: 257, name: "Blaziken", gen:3, types:["Fire","Fighting"], hp:80, atk:120, def:70, bio:"A tough Fire/Fighting starter with fierce kicks.", dex:"Blaziken's legs burn with internal flame when it prepares an attack."},
+      { id: 387, name: "Turtwig", gen:4, types:["Grass"], hp:55, atk:68, def:64, bio:"Rooted to the earth; grows a small plant on its head.", dex:"Turtwig's shell contains soil — it scorches sunlight into energy."},
+      { id: 390, name: "Chimchar", gen:4, types:["Fire"], hp:44, atk:58, def:44, bio:"Lively Fire-type that keeps a flame lit on its tail.", dex:"Chimchar's tail flame signals its mood and health."},
+      { id: 393, name: "Piplup", gen:4, types:["Water"], hp:53, atk:51, def:53, bio:"A proud Water starter who often refuses help from others.", dex:"Piplup waddles proudly — a very independent Pokémon."},
+      { id: 448, name: "Lucario", gen:4, types:["Fighting","Steel"], hp:70, atk:110, def:70, bio:"Detects auras; a skilled fighter with keen senses.", dex:"Lucario can handle both physical and aura-based combat."},
+      { id: 445, name: "Garchomp", gen:4, types:["Dragon","Ground"], hp:108, atk:130, def:95, bio:"A fast, powerful pseudo-legendary that hunts with speed.", dex:"Garchomp slices through earth and ocean currents with ease."},
+      { id: 461, name: "Weavile", gen:4, types:["Dark","Ice"], hp:70, atk:120, def:65, bio:"Swift and cunning hunter that strikes in packs at night.", dex:"Weavile stalks snowy forests; its claws are razor-sharp."},
+      { id: 471, name: "Glaceon", gen:4, types:["Ice"], hp:65, atk:60, def:110, bio:"An evolution born from frantic cold energy, graceful and still.", dex:"Glaceon cools the air around it to create frosted patterns."},
+      { id: 495, name: "Snivy", gen:5, types:["Grass"], hp:45, atk:45, def:55, bio:"Cool-headed Grass starter that moves with a graceful stride.", dex:"Snivy's tail helps it judge wind and speed when dodging."},
+      { id: 498, name: "Tepig", gen:5, types:["Fire"], hp:65, atk:63, def:45, bio:"Warm-hearted Fire starter whose nose guides it to food.", dex:"Tepig loves food — its snout senses tasty aromas easily."},
+      { id: 501, name: "Oshawott", gen:5, types:["Water"], hp:55, atk:55, def:45, bio:"Carries a shell it uses both to fight and to play.", dex:"Oshawott uses its shell as a trusty tool and weapon."},
+      { id: 571, name: "Zoroark", gen:5, types:["Dark"], hp:60, atk:105, def:60, bio:"Creates illusions to protect its pack; elusive and clever.", dex:"Zoroark weaves illusions so real that humans mistake them."}
+    ];
 
-                <div class="pokemon-card" data-pokemon="mewtwo">
-                    <img src="https://img.pokemondb.net/artwork/large/mewtwo.jpg" alt="Mewtwo">
-                    <h3>Mewtwo</h3>
-                    <div class="pokemon-type type-psychic">Psychic 🧠</div>
-                    <div class="pokemon-stats">
-                        <span>HP: 106</span>
-                        <span>ATK: 110</span>
-                        <span>DEF: 90</span>
-                    </div>
-                </div>
+    /* ---------- UTIL: create a simple type color mapping ---------- */
+    const typeColors = {
+      "Grass":"#7AC74C","Fire":"#EE8130","Water":"#6390F0","Psychic":"#F95587","Fairy":"#D685AD",
+      "Bug":"#A6B91A","Steel":"#B7B7CE","Rock":"#B6A136","Flying":"#A98FF3","Dragon":"#6F35FC",
+      "Ground":"#E2BF65","Fighting":"#C22E28","Dark":"#705746","Ice":"#96D9D6"
+    };
 
-                <div class="pokemon-card" data-pokemon="eevee">
-                    <img src="https://img.pokemondb.net/artwork/large/eevee.jpg" alt="Eevee">
-                    <h3>Eevee</h3>
-                    <div class="pokemon-type type-normal">Normal ⭐</div>
-                    <div class="pokemon-stats">
-                        <span>HP: 55</span>
-                        <span>ATK: 55</span>
-                        <span>DEF: 50</span>
-                    </div>
-                </div>
+    /* ---------- BUILD GRID CARDS ---------- */
+    const grid = document.getElementById('grid');
 
-                <div class="pokemon-card" data-pokemon="alakazam">
-                    <img src="https://img.pokemondb.net/artwork/large/alakazam.jpg" alt="Alakazam">
-                    <h3>Alakazam</h3>
-                    <div class="pokemon-type type-psychic">Psychic 🧠</div>
-                    <div class="pokemon-stats">
-                        <span>HP: 55</span>
-                        <span>ATK: 50</span>
-                        <span>DEF: 45</span>
-                    </div>
-                </div>
-
-                <div class="pokemon-card" data-pokemon="gengar">
-                    <img src="https://img.pokemondb.net/artwork/large/gengar.jpg" alt="Gengar">
-                    <h3>Gengar</h3>
-                    <div class="pokemon-type type-psychic">Ghost 👻</div>
-                    <div class="pokemon-stats">
-                        <span>HP: 60</span>
-                        <span>ATK: 65</span>
-                        <span>DEF: 60</span>
-                    </div>
-                </div>
-
-                <!-- Duplicate set for seamless loop -->
-                <div class="pokemon-card" data-pokemon="pikachu">
-                    <img src="https://img.pokemondb.net/artwork/large/pikachu.jpg" alt="Pikachu">
-                    <h3>Pikachu</h3>
-                    <div class="pokemon-type type-electric">Electric ⚡</div>
-                    <div class="pokemon-stats">
-                        <span>HP: 35</span>
-                        <span>ATK: 55</span>
-                        <span>DEF: 40</span>
-                    </div>
-                </div>
-
-                <div class="pokemon-card" data-pokemon="charmander">
-                    <img src="https://img.pokemondb.net/artwork/large/charmander.jpg" alt="Charmander">
-                    <h3>Charmander</h3>
-                    <div class="pokemon-type type-fire">Fire 🔥</div>
-                    <div class="pokemon-stats">
-                        <span>HP: 39</span>
-                        <span>ATK: 52</span>
-                        <span>DEF: 43</span>
-                    </div>
-                </div>
-
-                <div class="pokemon-card" data-pokemon="squirtle">
-                    <img src="https://img.pokemondb.net/artwork/large/squirtle.jpg" alt="Squirtle">
-                    <h3>Squirtle</h3>
-                    <div class="pokemon-type type-water">Water 💧</div>
-                    <div class="pokemon-stats">
-                        <span>HP: 44</span>
-                        <span>ATK: 48</span>
-                        <span>DEF: 65</span>
-                    </div>
-                </div>
-
-                <div class="pokemon-card" data-pokemon="bulbasaur">
-                    <img src="https://img.pokemondb.net/artwork/large/bulbasaur.jpg" alt="Bulbasaur">
-                    <h3>Bulbasaur</h3>
-                    <div class="pokemon-type type-grass">Grass 🌿</div>
-                    <div class="pokemon-stats">
-                        <span>HP: 45</span>
-                        <span>ATK: 49</span>
-                        <span>DEF: 49</span>
-                    </div>
-                </div>
-
-                <div class="pokemon-card" data-pokemon="mewtwo">
-                    <img src="https://img.pokemondb.net/artwork/large/mewtwo.jpg" alt="Mewtwo">
-                    <h3>Mewtwo</h3>
-                    <div class="pokemon-type type-psychic">Psychic 🧠</div>
-                    <div class="pokemon-stats">
-                        <span>HP: 106</span>
-                        <span>ATK: 110</span>
-                        <span>DEF: 90</span>
-                    </div>
-                </div>
-
-                <div class="pokemon-card" data-pokemon="eevee">
-                    <img src="https://img.pokemondb.net/artwork/large/eevee.jpg" alt="Eevee">
-                    <h3>Eevee</h3>
-                    <div class="pokemon-type type-normal">Normal ⭐</div>
-                    <div class="pokemon-stats">
-                        <span>HP: 55</span>
-                        <span>ATK: 55</span>
-                        <span>DEF: 50</span>
-                    </div>
-                </div>
-
-                <div class="pokemon-card" data-pokemon="alakazam">
-                    <img src="https://img.pokemondb.net/artwork/large/alakazam.jpg" alt="Alakazam">
-                    <h3>Alakazam</h3>
-                    <div class="pokemon-type type-psychic">Psychic 🧠</div>
-                    <div class="pokemon-stats">
-                        <span>HP: 55</span>
-                        <span>ATK: 50</span>
-                        <span>DEF: 45</span>
-                    </div>
-                </div>
-
-                <div class="pokemon-card" data-pokemon="gengar">
-                    <img src="https://img.pokemondb.net/artwork/large/gengar.jpg" alt="Gengar">
-                    <h3>Gengar</h3>
-                    <div class="pokemon-type type-psychic">Ghost 👻</div>
-                    <div class="pokemon-stats">
-                        <span>HP: 60</span>
-                        <span>ATK: 65</span>
-                        <span>DEF: 60</span>
-                    </div>
-                </div>
-            </div>
+    mons.forEach((mon, idx) => {
+      const card = document.createElement('button');
+      card.className = 'card idle';
+      card.setAttribute('data-index', idx);
+      card.setAttribute('aria-haspopup','dialog');
+      card.setAttribute('aria-label', `${mon.name} card. Press Enter to open details.`);
+      card.innerHTML = `
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div class="card-inner">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${mon.id}.png" alt="${mon.name}">
+          </div>
+          <div style="flex:1">
+            <h3>${mon.name}</h3>
+            <div class="mini-desc">${mon.bio}</div>
+          </div>
+          <div class="pokedex-corner">#${mon.id}</div>
         </div>
-
-        <!-- Modal -->
-        <div id="pokemon-modal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <div id="modal-body">
-                    <!-- Content will be populated by JavaScript -->
-                </div>
-            </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px;">
+          <div class="type-row"></div>
+          <div style="font-size:12px;color:var(--muted)">Gen ${mon.gen}</div>
         </div>
+      `;
 
-        <footer class="pokemon-footer">
-            <p>Made for fun · Gotta Catch 'Em All!</p>
-            <p class="claude-signature">Crafted with AI precision by Claude ⚡</p>
-        </footer>
-    </main> 
+      // populate types
+      const typeRow = card.querySelector('.type-row');
+      mon.types.forEach(t=>{
+        const pill = document.createElement('div');
+        pill.className = 'type-pill';
+        pill.textContent = t;
+        // inline pill coloring using style attribute - keeps CSS inline-only
+        pill.style.background = `linear-gradient(180deg, ${lighten(typeColors[t]||'#888',0.3)}, ${lighten(typeColors[t]||'#888',0.1)})`;
+        pill.style.color = '#071622';
+        typeRow.appendChild(pill);
+      });
 
-       <script src="toggle_theme.js"></script>
+      // hover accessible description: add title
+      card.title = mon.name + " — click for details";
+      // attach events
+      card.addEventListener('click', openMon);
+      card.addEventListener('keydown', (e)=>{ if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openMon(e); }});
+      grid.appendChild(card);
+    });
 
+    /* ---------- HELPER: lighten hex color by fraction ---------- */
+    function lighten(hex, amt){
+      // hex like #rrggbb
+      hex = hex.replace('#','');
+      let r = parseInt(hex.substring(0,2),16);
+      let g = parseInt(hex.substring(2,4),16);
+      let b = parseInt(hex.substring(4,6),16);
+      r = Math.min(255, Math.floor(r + (255 - r)*amt));
+      g = Math.min(255, Math.floor(g + (255 - g)*amt));
+      b = Math.min(255, Math.floor(b + (255 - b)*amt));
+      return `rgb(${r},${g},${b})`;
+    }
+
+    /* ---------- ANIMATION: hero from card to center with floating clone ---------- */
+    const overlay = document.getElementById('overlay');
+    const detailBox = document.getElementById('detail');
+    let currentFloating = null;
+
+    function openMon(e){
+      const btn = e.currentTarget;
+      const idx = parseInt(btn.getAttribute('data-index'),10);
+      const mon = mons[idx];
+
+      // create floating clone element
+      const rect = btn.getBoundingClientRect();
+      const floating = document.createElement('div');
+      floating.className = 'floating';
+      floating.style.left = rect.left + 'px';
+      floating.style.top = rect.top + 'px';
+      floating.style.width = rect.width + 'px';
+      floating.style.height = rect.height + 'px';
+      floating.style.transform = 'rotate(0deg)';
+      floating.innerHTML = btn.innerHTML;
+      document.body.appendChild(floating);
+      currentFloating = floating;
+
+      // prepare overlay visible but keep hidden content until animation finishes
+      overlay.classList.add('show');
+      overlay.style.opacity = '0';
+      overlay.setAttribute('aria-hidden','false');
+
+      // compute target center position & size
+      const targetW = Math.min(window.innerWidth * 0.92, 920);
+      const targetH = Math.min(window.innerHeight * 0.88, 720);
+      const targetLeft = (window.innerWidth - targetW) / 2;
+      const targetTop = Math.max((window.innerHeight - targetH) / 2, 24);
+
+      // animate floating to center with rotation
+      const animDuration = 560;
+      // use element.animate if available
+      const keyframes = [
+        { transform:`translate3d(0px,0px,0px) rotate(0deg)`, opacity:1 },
+        { transform:`translate3d(${targetLeft - rect.left}px, ${targetTop - rect.top}px, 60px) rotate(540deg)`, opacity:1 }
+      ];
+      const timing = { duration: animDuration, easing: 'cubic-bezier(.2,.9,.25,1)', fill:'forwards' };
+      floating.animate(keyframes, timing);
+
+      // animate size separately (since translate doesn't change width)
+      floating.animate([
+        { width: rect.width + 'px', height: rect.height + 'px' },
+        { width: targetW + 'px', height: targetH + 'px' }
+      ], timing);
+
+      // fade overlay in (slightly delayed)
+      setTimeout(()=> overlay.style.opacity = '1', 100);
+
+      // after animation finishes, populate detail content and remove floating
+      setTimeout(()=> {
+        showDetailFor(mon);
+        if(floating){
+          // keep for a short moment to avoid abrupt change, then remove
+          floating.style.opacity = '0';
+          setTimeout(()=>{ try{ floating.remove(); }catch(e){} }, 80);
+        }
+        currentFloating = null;
+      }, animDuration - 80);
+    }
+
+    function showDetailFor(mon){
+      detailBox.innerHTML = `
+        <div style="display:flex;gap:12px;align-items:flex-start;">
+          <div style="display:flex;flex-direction:column;gap:10px;min-width:260px;">
+            <div>
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${mon.id}.png" alt="${mon.name}">
+            </div>              
+            <div style="display:flex;gap:8px;align-items:center;">
+              <div style="font-weight:900;font-size:18px">${mon.name}</div>
+              <div style="color:var(--muted);margin-left:8px">#${mon.id} — Gen ${mon.gen}</div>
+              <button class="close-btn" aria-label="Close detail">✕</button>
+            </div>
+            <div class="type-list" style="margin-top:6px;"></div>
+            <div style="display:flex;gap:8px;margin-top:8px;">
+              <div class="stat">HP<br><strong>${mon.hp}</strong></div>
+              <div class="stat">ATK<br><strong>${mon.atk}</strong></div>
+              <div class="stat">DEF<br><strong>${mon.def}</strong></div>
+            </div>
+          </div>
+          <div style="flex:1;min-width:0;">
+            <div style="margin-bottom:12px;">
+              <div style="font-weight:800;font-size:15px;margin-bottom:6px">Pokédex Entry</div>
+              <div class="bio">${mon.dex}</div>
+            </div>
+            <div style="margin-top:12px;">
+              <div style="font-weight:800;font-size:15px;margin-bottom:6px">Biography</div>
+              <div class="bio">${mon.bio} More lore and flavor can go here; this panel is designed for deeper detail without cluttering the grid view.</div>
+            </div>
+          </div>
+        </div>
+      `;
+      // attach types
+      const typeList = detailBox.querySelector('.type-list');
+      mon.types.forEach(t=>{
+        const el = document.createElement('div');
+        el.className = 'type-pill';
+        el.textContent = t;
+        el.style.background = `linear-gradient(180deg, ${lighten(typeColors[t]||'#777',0.35)}, ${lighten(typeColors[t]||'#777',0.12)})`;
+        typeList.appendChild(el);
+      });
+
+      // close button handler
+      detailBox.querySelector('.close-btn').addEventListener('click', closeDetail);
+      detailBox.classList.add('show-contents');
+      detailBox.setAttribute('aria-hidden','false');
+
+      // Allow clicking outside content to close
+      overlay.addEventListener('click', overlayClick);
+      // prevent overlay clicks from firing when clicking inside detail
+      detailBox.addEventListener('click', (ev)=> ev.stopPropagation());
+      // keyboard ESC to close
+      document.addEventListener('keydown', escHandler);
+    }
+
+    function overlayClick(e){
+      // close detail when clicking overlay (outside content)
+      if(e.target === overlay) closeDetail();
+    }
+
+    function escHandler(e){
+      if(e.key === 'Escape') closeDetail();
+    }
+
+    function closeDetail(){
+      // remove handlers
+      overlay.removeEventListener('click', overlayClick);
+      document.removeEventListener('keydown', escHandler);
+      detailBox.classList.remove('show-contents');
+      detailBox.setAttribute('aria-hidden','true');
+      overlay.style.opacity = '0';
+      overlay.setAttribute('aria-hidden','true');
+
+      // animation: small zoom out effect on overlay close
+      setTimeout(()=> overlay.classList.remove('show'), 300);
+    }
+
+    // make sure focus returns to grid after close
+    overlay.addEventListener('transitionend', ()=>{
+      if(overlay.classList.contains('show') === false){
+        // focus grid for keyboard navigation
+        grid.focus();
+      }
+    });
+
+    /* ---------- small accessibility and micro interactions ---------- */
+    // subtle parallax effect on pointer move for cards
+    document.addEventListener('pointermove', (e)=>{
+      // limit for performance: update a few cards around pointer
+      const cards = document.querySelectorAll('.card');
+      cards.forEach((c)=>{
+        const r = c.getBoundingClientRect();
+        const dx = (e.clientX - (r.left + r.width/2))/r.width;
+        const dy = (e.clientY - (r.top + r.height/2))/r.height;
+        // small transform
+        c.style.transform = `translateY(${Math.max(-10, Math.min(-4, -6 + -dy*2))}px) scale(${c.matches(':hover') ? 1.06 : 1})`;
+      });
+    });
+
+    // Keyboard: tab order for cards is natural since they are buttons; ensure overlay focus trap
+    // minimal focus trap: when overlay open, keep focus on close button
+    const observer = new MutationObserver(()=> {
+      if(overlay.classList.contains('show')){
+        const close = detailBox.querySelector('.close-btn');
+        if(close) close.focus();
+      }
+    });
+    observer.observe(overlay, { attributes:true, childList:true, subtree:true });
+
+    // Prevent performance issues: throttle pointermove (already simple light)
+    // END SCRIPT
+  </script>
 </body>
 </html>

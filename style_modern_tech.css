@@ -41,12 +41,7 @@ main {
     rgb(112, 112, 112)
   );
 
-  /* background-image: linear-gradient(
-    to bottom,
-    hsl(0, 1%, 19%),
-    hsl(262, 37%, 13%),
-    hsl(231, 26%, 14%)
-  ); */
+  min-width: 1000px;
 }
 
 .navbar {
@@ -119,9 +114,8 @@ main {
   font-family: Chakrapetch;
   padding: 30px;
   display: inline-block;
-  min-width: 700px;
-  max-height: fit-content;
-  overflow: auto;
+  max-height: 200px;
+  overflow: scroll;
   background-color: rgb(86, 86, 86);
   border-radius: 0.5rem;
   color: white;
@@ -177,6 +171,7 @@ main {
 .about-me-container {
   display: flex;
   margin-top: 50px;
+  min-height: 200px;
 }
 
 .about-me-container img {
@@ -190,9 +185,6 @@ main {
   user-select: none;
 }
 
-.about-me-professional-summary-container {
-  padding: 1rem;
-}
 
 .about-me-heading {
   color: white;
@@ -265,14 +257,14 @@ main {
   color: white;
   font-family: Orbitron;
   text-align: center;
+  align-items: center;
   user-select: none;
 }
 
 .portfolio-thumbnail-wrapper {
   position: relative;
   margin-right: 50px;
-  width: 250%;
-  max-width: 600px;
+  min-width: 400px;
   height: 350px;
   overflow: hidden;
   cursor: pointer;

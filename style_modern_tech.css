@@ -303,7 +303,6 @@ main {
 /* QUALIFICATIONS PAGE*/
 
 .qualifications-main {
-  max-width: 77%;
   overflow: hidden;
 }
 .qualifications-summary-container {
@@ -373,7 +372,8 @@ main {
 
 .service-community-service-intro {
   margin-top: 20px;
-  padding: 1rem;
+  margin-right: 10px;
+  padding-inline: 3rem;
 }
 
 .service-content-container {
@@ -383,6 +383,7 @@ main {
   justify-content: center;
   overflow: hidden;
   align-items: center;
+
 }
 
 .service-project-header {
@@ -404,7 +405,7 @@ main {
   font-size: 16px;
   font-weight: bold;
   padding: 24px;
-  margin: 20px 0;
+  margin: 20px 10px;
 
   opacity: 0;
   transition: opacity 1s ease-out, transform 1.2s ease-out;

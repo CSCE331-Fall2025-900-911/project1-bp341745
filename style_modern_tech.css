@@ -28,7 +28,6 @@ body {
   );
 }
 
-
 main {
   border-radius: 1rem;
   padding: 4rem;
@@ -85,6 +84,7 @@ main {
   border: none;
   border-radius: 8px;
   cursor: pointer;
+  user-select: none;
 }
 
 #theme-toggle:hover {
@@ -138,6 +138,7 @@ main {
   font-size: larger;
   margin-top: 75px;
   display: inline-block;
+  user-select: none;
 }
 
 .about-me-name-text {
@@ -181,7 +182,6 @@ main {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 2);
   user-select: none;
 }
-
 
 .about-me-heading {
   color: white;
@@ -389,6 +389,8 @@ main {
   color: white;
   font-family: Orbitron;
   text-align: center;
+    user-select: none;
+
 }
 
 .service-project-text {

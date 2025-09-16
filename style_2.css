@@ -63,7 +63,6 @@ main {
         font increase size animation;*/
 }
 
-
 .toggle-container {
   padding-top: 2rem;
   text-align: center;
@@ -73,11 +72,12 @@ main {
   font-family: Pixelfont;
   background-color: rgb(0, 2, 122);
   box-shadow: 0 4px 8px #0062be;
+  user-select: none;
 
   color: rgb(0, 240, 188);
   cursor: pointer;
 }
-#theme-toggle:hover{
+#theme-toggle:hover {
   background-color: rgb(26, 0, 172);
   color: #068e97;
 }
@@ -129,6 +129,7 @@ main {
   font-size: larger;
   margin-top: 75px;
   display: inline-block;
+  user-select: none;
 }
 
 .about-me-name-text {
@@ -317,7 +318,7 @@ main {
   overflow: hidden;
 }
 
-.qualifications-section-header{
+.qualifications-section-header {
   margin-top: 75px;
   font-size: larger;
   color: rgb(0, 17, 255);
@@ -360,7 +361,7 @@ main {
 }
 
 .qualifications-main .float-img {
-  width: 80px; 
+  width: 80px;
   height: auto;
   filter: invert(1);
   user-select: none;
@@ -403,6 +404,8 @@ main {
   text-shadow: 2px 4px rgb(0, 2, 90);
   user-select: none;
   font-family: Pixelfont;
+    user-select: none;
+
 }
 
 .service-community-service-intro {
@@ -479,4 +482,3 @@ main {
   border: 3px solid rgba(255, 0, 255, 0.5);
   box-shadow: 0 8px 12px rgba(255, 0, 255, 0.5);
 }
-

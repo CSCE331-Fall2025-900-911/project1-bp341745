@@ -15,9 +15,11 @@
 
 /*ALL PAGES*/
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 body {
-  /* background-image: linear-gradient(to bottom, hsl(0, 1%, 19%), rgb(7, 7, 7)); */
-  /* background-image: radial-gradient(circle at top left, rgb(78, 172, 122), rgb(23, 15, 130)); */
   background-image: radial-gradient(
     circle at top left,
     rgb(78, 172, 122),
@@ -26,9 +28,6 @@ body {
   );
 }
 
-::-webkit-scrollbar {
-  display: none;
-}
 
 main {
   border-radius: 1rem;
@@ -77,8 +76,6 @@ main {
 
 .navbar a:hover {
   background-color: grey;
-  /*More effects i want to add later:
-        font increase size animation;*/
 }
 
 #theme-toggle {
@@ -176,8 +173,8 @@ main {
 
 .about-me-container img {
   object-fit: cover;
-  max-width: 300px;
-  max-height: 300px;
+  max-width: 400px;
+  max-height: 400px;
   border-radius: 50%;
   border: 3px solid #ccc;
   margin: 30px 50px;
@@ -222,6 +219,16 @@ main {
   transform: scale(0.8);
 }
 
+.about-me-column-text a {
+  text-decoration: none;
+  color: aqua;
+}
+.about-me-column-text a:hover {
+  text-decoration: underline;
+  text-decoration-color: hsl(180, 100%, 50%);
+  color: hsl(180, 100%, 50%);
+}
+
 .about-me-column-text.show {
   opacity: 1;
   transform: scale(1);
@@ -249,7 +256,6 @@ main {
 
 .portfolio-project-summary-container img:hover {
   cursor: pointer;
-  /* TODO: dilate image/video*/
 }
 
 .portfolio-project-header {
@@ -334,7 +340,7 @@ main {
 }
 
 .qualifications-main .float-img {
-  width: 80px; /* adjust size */
+  width: 80px;
   height: auto;
   filter: invert(1);
   user-select: none;
@@ -351,6 +357,16 @@ main {
 
 .qualifications-interests-container {
   padding: 0px 100px;
+}
+
+.qualifications-interests-container a {
+  text-decoration: none;
+  color: aqua;
+}
+.qualifications-interests-container a:hover {
+  text-decoration: underline;
+  text-decoration-color: hsl(180, 100%, 50%);
+  color: hsl(180, 100%, 50%);
 }
 
 /* SERVICE*/

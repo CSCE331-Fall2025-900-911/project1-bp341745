@@ -3,14 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CSCE 445 - Brandon's Website</title>
+    <title>CSCE 445 - Brandon's Webpage</title>
     <script>
       (function () {
         var currentTheme = localStorage.getItem("selectedTheme") || "modern";
 
         var stylesheets = {
-          modern: "style_modern_tech.css",
-          pixel: "style_2.css",
+          "modern": "style_modern_tech.css",
+          "pixel": "style_2.css",
         };
 
         // Immediately write the correct stylesheet
@@ -46,11 +46,15 @@
       </section>
 
       <div class="about-me-container">
-        <img
-          id="self_portrait"
-          src="assets/self_portrait_25.JPG"
-          alt="self portrait of Brandon Perez"
-        />
+        <div class="csce445-name-container">
+          <img
+            id="self_portrait"
+            src="assets/self_portrait_25.JPG"
+            alt="self portrait of Brandon Perez"
+          />
+          <h1 class="csce445-name-text">Brandon Perez</h1>
+        </div>
+
         <div class="about-me-professional-summary-container">
           <h1 class="about-me-heading">Why Computers and New Media?</h1>
           <p class="paragraph-text">

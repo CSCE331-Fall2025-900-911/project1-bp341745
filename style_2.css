@@ -488,6 +488,17 @@ main {
   margin-top: 60px;
 }
 
+.csce445-name-text {
+  color: rgb(0, 227, 243);;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-family: Pixelfont;
+  font-size: larger;
+  text-align: center;
+  user-select: none;
+}
+
 .csce445-media-title {
   color: rgb(0, 227, 243);
   text-shadow: 2px 4px rgb(18, 10, 94);

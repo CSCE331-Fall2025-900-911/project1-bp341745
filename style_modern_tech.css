@@ -449,6 +449,17 @@ main {
   margin-top: 60px;
 }
 
+.csce445-name-text {
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-family: Orbitron;
+  font-size: larger;
+  text-align: center;
+  user-select: none;
+}
+
 .csce445-media-title {
   color: white;
   font-family: Orbitron;

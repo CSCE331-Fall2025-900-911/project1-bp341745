@@ -443,3 +443,72 @@ main {
   border: 3px solid #ccc;
   box-shadow: 0 8px 12px rgba(0, 0, 0, 5);
 }
+
+/* CSCE 445 (Section 2 only) */
+.csce445-media-section {
+  margin-top: 60px;
+}
+
+.csce445-media-title {
+  color: white;
+  font-family: Orbitron;
+  font-size: larger;
+  text-align: center;
+  user-select: none;
+}
+
+.csce445-media-intro {
+  font-family: Chakrapetch;
+  padding: 24px;
+  margin: 20px 0;
+  background-color: rgb(86, 86, 86);
+  border-radius: 0.5rem;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 2);
+}
+
+.csce445-media-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  align-items: start;
+  margin-top: 24px;
+}
+
+.csce445-media-card {
+  padding: 20px;
+  background-color: rgb(86, 86, 86);
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 2);
+  color: white;
+  max-height: 420px;
+  overflow: scroll;
+
+
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.csce445-media-card.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.csce445-media-card-title {
+  margin: 0 0 12px 0;
+  font-family: Orbitron;
+  font-size: large;
+  text-align: center;
+  user-select: none;
+}
+
+.csce445-media-list {
+  margin: 0;
+  padding-left: 20px;
+  font-family: Chakrapetch;
+}
+
+.csce445-media-list ul {
+  margin-top: 8px;
+}

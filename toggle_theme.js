@@ -116,6 +116,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
   service_project_texts.forEach(p => service_project_observer.observe(p));
 
+  //csce445 media cards
+  const csce445_media_cards = document.querySelectorAll(".csce445-media-card");
+
+  const csce445_media_observer = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+          obs.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.3 } 
+  );
+
+  csce445_media_cards.forEach(card => csce445_media_observer.observe(card));
+
 
 });
 

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSCE 445 - Brandon's Website</title>
+    <script>
+      (function () {
+        var currentTheme = localStorage.getItem("selectedTheme") || "modern";
+
+        var stylesheets = {
+          modern: "style_modern_tech.css",
+          pixel: "style_2.css",
+        };
+
+        // Immediately write the correct stylesheet
+        document.write(
+          '<link id="theme-style" rel="stylesheet" href="' +
+            stylesheets[currentTheme] +
+            '">'
+        );
+      })();
+    </script>
+  </head>
+  <body class="about-me-body">
+    <main class="about-me-main">
+      <nav class="navbar">
+        <ul>
+          <li>
+            <a href="index.html"> About Me </a>
+          </li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="qualifications.html">Qualifications</a></li>
+          <li><a href="service.html">Service </a></li>
+          <li><a href="genai.html">GenAI</a></li>
+          <li><a href="csce_445.html">CSCE 445</a></li>
+        </ul>
+      </nav>
+      <div class="toggle-container">
+        <button id="theme-toggle">Switch Theme</button>
+      </div>
+
+      <!-- Section 1: Name, photo, brief statement -->
+      <section class="about-me-name-header">
+        <h1 class="about-me-name-text">Personal Media Use</h1>
+      </section>
+
+      <div class="about-me-container">
+        <img
+          id="self_portrait"
+          src="assets/self_portrait_25.JPG"
+          alt="self portrait of Brandon Perez"
+        />
+        <div class="about-me-professional-summary-container">
+          <h1 class="about-me-heading">Why Computers and New Media?</h1>
+          <p class="paragraph-text">
+            I am in this class because I want to learn more about the impact of media on my life and how I can use it to my advantage.
+            I am also interested in the psychology of media and how it can be used to influence people. I believe using media can help make people's lives easier and more enjoyable.
+          </p>
+        </div>
+      </div>
+
+      <!-- Section 2: Media list template (custom containers for this section only) -->
+      <section class="csce445-media-section" aria-labelledby="csce445-media-title">
+        <h1 id="csce445-media-title" class="csce445-media-title">
+          Media I Frequently Use
+        </h1>
+       
+        <div class="csce445-media-grid">
+          <div class="csce445-media-card">
+            <h2 class="csce445-media-card-title">Music</h2>
+            <ul class="csce445-media-list">
+              <li>
+                Apple Music
+                <ul>
+                  <li>Lo-fi, Pop, Rock, Alternative</li>
+                </ul>
+              </li>
+              <li>
+                YouTube Music
+                <ul>
+                  <li>Classical, Campfire music, background music</li>
+                </ul>
+              </li>
+              <li>
+                Live or Recorded Performances
+                <ul>
+                  <li>Concerts, Live sessions, Podcasts</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+
+          <div class="csce445-media-card">
+            <h2 class="csce445-media-card-title">Games</h2>
+            <ul class="csce445-media-list">
+              <li>
+                Console
+                <ul>
+                  <li>
+                    Xbox
+                    <ul>
+                      <li>Rocket League, Minecraft, Call of Duty, Forza</li>
+                    </ul>
+                  </li>
+                  <li>
+                    Nintendo
+                    <ul>
+                      <li>Mario Series Games, Zelda, Pokemon</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+
+              <li>
+                PC
+                <ul>
+                  <li>Terreria, Minecraft</li>
+                </ul>
+              </li>
+              
+            </ul>
+          </div>
+
+          <div class="csce445-media-card">
+            <h2 class="csce445-media-card-title">Still Images</h2>
+            <ul class="csce445-media-list">
+              <li>
+                Social Media
+                <ul>
+                  <li>Instagram</li>
+                </ul>
+              </li>
+              <li>
+                Personal Photography
+                <ul>
+                  <li>Sharing with friends/family, personal archive</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+
+          <div class="csce445-media-card">
+            <h2 class="csce445-media-card-title">Moving Images</h2>
+            <ul class="csce445-media-list">
+              <li>
+                Television
+                <ul>
+                  <li>Science fiction, Drama, Comedy</li>
+                </ul>
+              </li>
+              <li>
+                Short-form Video
+                <ul>
+                  <li>YouTube, TikTok, Instagram Reels</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+
+          <div class="csce445-media-card">
+            <h2 class="csce445-media-card-title">Content I Generate</h2>
+            <ul class="csce445-media-list">
+              <li>
+                Communication
+                <ul>
+                  <li>Email, Messaging apps, Discussion forums
+                    <ul>
+                      <li>Gmail, Discord, Reddit</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Creative or Academic Work
+                <ul>
+                  <li>Documents, Code repositories, Notes</li>
+                    <ul>
+                      <li>Google Docs, Github, Microsoft OneNote</li>
+                    </ul>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 3: Challenge with tools/software/hardware -->
+      <section class="about-me-outro">
+        <h1 class="about-me-heading">
+          Challenge: Finding Reliable, High-Quality Sources
+        </h1>
+        <p class="paragraph-text">
+          One ongoing challenge with my media consumption and content generation
+          is reliably finding trustworthy, high-quality information at the
+          moment I need it. When I search for tutorials or DIY videos, for
+          example, there can be dozens of results with similar titles but
+          widely varying levels of accuracy and
+          trustworthiness. Evaluating which sources are up-to-date, technically
+          correct, and free from hidden sponsorship or bias can take more time
+          than actually following the instructions themselves. This challenge
+          becomes even more noticeable when I am learning a new tool, framework,
+          or similar: older videos may no longer match the current interface, and
+          comment sections are left with ambiguous information.
+        </p>
+        <p class="paragraph-text">
+          As a result, I often have to cross-check multiple sources, compare
+          instructions against official documentation, and test small steps on
+          my own before fully committing to a particular workflow. While this
+          careful process helps reduce mistakes, it also introduces friction
+          into both casual and academic media use. Designing tools or platforms
+          that better surface reliable, context-aware recommendations for DIY
+          content and technical guides would significantly improve my
+          experience.
+        </p>
+      </section>
+    </main>
+    <script src="toggle_theme.js"></script>
+  </body>
+</html>
+
+

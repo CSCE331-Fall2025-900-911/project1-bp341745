@@ -613,3 +613,57 @@ main {
   font-size: 0.65em;
   opacity: 0.8;
 }
+
+/* CSCE 412 - layout aligned with modern style, pixel theme colors/fonts */
+.csce412-project-container {
+  padding: 1rem;
+  display: flex;
+}
+
+.csce412-project-image-container {
+  display: flex;
+  position: relative;
+  margin-top: 50px;
+  margin-right: 50px;
+  min-width: 400px;
+  height: 350px;
+  overflow: hidden;
+  cursor: default;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 2);
+}
+
+.csce412-project-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+}
+
+.csce412-project-description-container {
+  flex: 1;
+  padding: 1rem;
+}
+
+.csce412-project-description-text {
+  font-family: Pixelsans;
+  padding: 30px;
+  display: inline-block;
+  max-height: 300px;
+  overflow: auto;
+  background-color: #1a0033;
+  border-radius: 0.5rem;
+  color: #00aeff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 2);
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.csce412-project-description-header {
+  display: block;
+  color: white;
+  font-family: Pixelfont;
+  text-shadow: 2px 4px #c300ff;
+  text-align: center;
+  user-select: none;
+}

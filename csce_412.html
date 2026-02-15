@@ -1,21 +1,25 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CSCE 412 - Cloud Computing | Brandon's Webpage</title>
     <script>
-    (function() {
-        var currentTheme = localStorage.getItem('selectedTheme') || 'modern';
-        
+      (function () {
+        var currentTheme = localStorage.getItem("selectedTheme") || "modern";
+
         var stylesheets = {
-            'modern': 'style_modern_tech.css',
-            'pixel': 'style_2.css'
+          modern: "style_modern_tech.css",
+          pixel: "style_2.css",
         };
-        
+
         // Immediately write the correct stylesheet
-        document.write('<link id="theme-style" rel="stylesheet" href="' + stylesheets[currentTheme] + '">');
-    })();
+        document.write(
+          '<link id="theme-style" rel="stylesheet" href="' +
+            stylesheets[currentTheme] +
+            '">',
+        );
+      })();
     </script>
   </head>
   <body class="portfolio-body">
@@ -40,38 +44,42 @@
 
       <div class="portfolio-summary-container">
         <p class="paragraph-text">
-          CSCE 412 covers the fundamentals of cloud computing, including distributed systems,
-          virtualization, storage, and networking in cloud environments. This page serves as a
-          hub for course-related content, assignments, and resources.
+          CSCE 412 covers the fundamentals of cloud computing, including
+          distributed systems, virtualization, storage, and networking in cloud
+          environments. This page serves as a hub for course-related content,
+          assignments, and resources.
         </p>
       </div>
 
       <section class="section-header">
-        <h1>Course Overview</h1>
+        <h1>Projects and Assignments</h1>
       </section>
 
-      <div class="portfolio-project-container">
-        <div class="portfolio-project-description-container">
-          <h1 class="portfolio-project-header">About This Course</h1>
-          <p class="paragraph-text">
-            Cloud computing enables scalable, on-demand access to computing resources over the
-            internet. Through this course, I am learning about key concepts such as cloud
-            service models (IaaS, PaaS, SaaS), deployment models, and hands-on experience
-            with cloud platforms. This knowledge is essential for building modern,
-            scalable applications.
+      <div class="csce412-project-container">
+        <div class="csce412-project-image-container">
+          <img
+            src="assets/412_project_3_UML.drawio.png"
+            alt="Project 3 UML Diagram"
+            class="csce412-project-image"
+          />
+        </div>
+
+        <div class="csce412-project-description-container">
+          <h1 class="csce412-project-description-header">Project 3</h1>
+
+          <p class="csce412-project-description-text">
+            The UML diagram illustrates a load balancing system composed of four
+            main components: a Request Generator, a Request struct, a
+            LoadBalancer class, and a WebServer class. The Request Generator
+            creates incoming requests, which are stored in a queue managed by
+            the LoadBalancer. The LoadBalancer distributes these requests to
+            dynamically managed WebServer instances based on availability and
+            queue thresholds. Each WebServer processes one request at a time
+            until completion. The diagram highlights the relationships between
+            components, the flow of requests, and the system’s ability to scale
+            servers dynamically.
           </p>
         </div>
-      </div>
-
-      <section class="section-header">
-        <h1>Resources</h1>
-      </section>
-
-      <div class="portfolio-summary-container">
-        <p class="paragraph-text">
-          Additional resources, project documentation, and course materials will be
-          added here as the semester progresses.
-        </p>
       </div>
     </main>
     <script src="toggle_theme.js"></script>

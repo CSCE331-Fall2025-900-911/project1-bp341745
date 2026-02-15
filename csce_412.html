@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSCE 412 - Cloud Computing | Brandon's Webpage</title>
+    <script>
+    (function() {
+        var currentTheme = localStorage.getItem('selectedTheme') || 'modern';
+        
+        var stylesheets = {
+            'modern': 'style_modern_tech.css',
+            'pixel': 'style_2.css'
+        };
+        
+        // Immediately write the correct stylesheet
+        document.write('<link id="theme-style" rel="stylesheet" href="' + stylesheets[currentTheme] + '">');
+    })();
+    </script>
+  </head>
+  <body class="portfolio-body">
+    <main class="portfolio-main">
+      <nav class="navbar">
+        <ul>
+          <li><a href="index.html">About Me</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="qualifications.html">Qualifications</a></li>
+          <li><a href="service.html">Service</a></li>
+          <li><a href="genai.html">GenAI</a></li>
+          <li><a href="classes.html">Classes</a></li>
+        </ul>
+      </nav>
+      <div class="toggle-container">
+        <button id="theme-toggle">Switch Theme</button>
+      </div>
+
+      <section class="portfolio-summary-section-header">
+        <h1>CSCE 412 - Cloud Computing</h1>
+      </section>
+
+      <div class="portfolio-summary-container">
+        <p class="paragraph-text">
+          CSCE 412 covers the fundamentals of cloud computing, including distributed systems,
+          virtualization, storage, and networking in cloud environments. This page serves as a
+          hub for course-related content, assignments, and resources.
+        </p>
+      </div>
+
+      <section class="section-header">
+        <h1>Course Overview</h1>
+      </section>
+
+      <div class="portfolio-project-container">
+        <div class="portfolio-project-description-container">
+          <h1 class="portfolio-project-header">About This Course</h1>
+          <p class="paragraph-text">
+            Cloud computing enables scalable, on-demand access to computing resources over the
+            internet. Through this course, I am learning about key concepts such as cloud
+            service models (IaaS, PaaS, SaaS), deployment models, and hands-on experience
+            with cloud platforms. This knowledge is essential for building modern,
+            scalable applications.
+          </p>
+        </div>
+      </div>
+
+      <section class="section-header">
+        <h1>Resources</h1>
+      </section>
+
+      <div class="portfolio-summary-container">
+        <p class="paragraph-text">
+          Additional resources, project documentation, and course materials will be
+          added here as the semester progresses.
+        </p>
+      </div>
+    </main>
+    <script src="toggle_theme.js"></script>
+  </body>
+</html>

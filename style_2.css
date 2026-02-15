@@ -24,6 +24,7 @@ main {
   border-radius: 1rem;
   padding: 4rem;
   margin: 60px 120px;
+  min-width: 1100px;
 }
 
 .navbar {
@@ -52,7 +53,7 @@ main {
 .navbar li {
   float: left;
   overflow: hidden;
-  font-size: large;
+  font-size: small;
   font-family: Pixelfont;
 }
 
@@ -577,4 +578,38 @@ main {
 
 .csce445-media-list ul {
   margin-top: 8px;
+}
+
+/* CLASSES PAGE */
+.classes-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 500px;
+}
+
+.classes-list li {
+  font-family: Pixelfont;
+  font-size: small;
+}
+
+.classes-list a {
+  color: rgb(0, 240, 188);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.25rem;
+}
+
+.classes-list a:hover {
+  color: #068e97;
+  text-decoration: underline;
+}
+
+.classes-list .new-window-indicator {
+  font-size: 0.65em;
+  opacity: 0.8;
 }

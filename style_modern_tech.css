@@ -603,6 +603,16 @@ main {
 
 }
 
+.csce412-project-description-text a {
+  text-decoration: none;
+  color: aqua;
+}
+.csce412-project-description-text a:hover {
+  text-decoration: underline;
+  text-decoration-color: hsl(180, 100%, 50%);
+  color: hsl(180, 100%, 50%);
+}
+
 
 .csce412-project-description-header {
   display: block;

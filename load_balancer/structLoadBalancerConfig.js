@@ -9,5 +9,6 @@ var structLoadBalancerConfig =
     [ "minProcessingTime", "structLoadBalancerConfig.html#a82cedbf1c19e161801e1aa4ffe53577c", null ],
     [ "minThreshold", "structLoadBalancerConfig.html#a5b4eb73632370f262c7801e7f5466f2e", null ],
     [ "requestProbability", "structLoadBalancerConfig.html#a75ba0194b48a296fe8abb9d119e5714d", null ],
-    [ "scaleCooldown", "structLoadBalancerConfig.html#ab2e6ba71f5444572ceab9d275da2a46e", null ]
+    [ "scaleCooldown", "structLoadBalancerConfig.html#ab2e6ba71f5444572ceab9d275da2a46e", null ],
+    [ "statusInterval", "structLoadBalancerConfig.html#ad01eda63a501089a7fca6c842801e664", null ]
 ];

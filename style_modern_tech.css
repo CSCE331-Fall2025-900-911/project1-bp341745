@@ -622,3 +622,44 @@ main {
   align-items: center;
   user-select: none;
 }
+
+
+
+
+.csce482-project-description-container {
+  flex: 1;
+  padding: 1rem;
+}
+
+.csce482-project-description-text {
+  font-family: Chakrapetch;
+  padding: 30px;
+  display: inline-block;
+  max-height: 300px;
+  overflow: scroll;
+  background-color: rgb(86, 86, 86);
+  border-radius: 0.5rem;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 2);
+
+}
+
+.csce482-project-description-text a {
+  text-decoration: none;
+  color: aqua;
+}
+.csce482-project-description-text a:hover {
+  text-decoration: underline;
+  text-decoration-color: hsl(180, 100%, 50%);
+  color: hsl(180, 100%, 50%);
+}
+
+
+.csce482-project-description-header {
+  display: block;
+  color: white;
+  font-family: Orbitron;
+  text-align: center;
+  align-items: center;
+  user-select: none;
+}

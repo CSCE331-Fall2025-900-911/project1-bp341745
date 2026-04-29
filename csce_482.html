@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSCE 412 - Cloud Computing | Brandon's Webpage</title>
+    <script>
+      (function () {
+        var currentTheme = localStorage.getItem("selectedTheme") || "modern";
+
+        var stylesheets = {
+          modern: "style_modern_tech.css",
+          pixel: "style_2.css",
+        };
+
+        // Immediately write the correct stylesheet
+        document.write(
+          '<link id="theme-style" rel="stylesheet" href="' +
+            stylesheets[currentTheme] +
+            '">',
+        );
+      })();
+    </script>
+  </head>
+  <body class="portfolio-body">
+    <main class="portfolio-main">
+      <nav class="navbar">
+        <ul>
+          <li><a href="index.html">About Me</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="qualifications.html">Qualifications</a></li>
+          <li><a href="service.html">Service</a></li>
+          <li><a href="genai.html">GenAI</a></li>
+          <li><a href="classes.html">Classes</a></li>
+        </ul>
+      </nav>
+      <div class="toggle-container">
+        <button id="theme-toggle">Switch Theme</button>
+      </div>
+
+      <section class="portfolio-summary-section-header">
+        <h1>CSCE 482 - Capstone</h1>
+      </section>
+
+      <div class="csce482-project-description-container">
+        <p class="paragraph-text">
+          CSCE 482 is a capstone course for computer science students. This
+          course is a collaborative project that allows students to apply their
+          knowledge to a real-world problem.
+        </p>
+      </div>
+
+      <section class="section-header">
+        <h1>Project Overview</h1>
+      </section>
+
+      <div class="csce482-project-description-container">
+        <p class="csce482-project-description-text">
+          In modern collaborative environments, transferring files between
+          nearby devices remains unnecessarily complex. Users often rely on
+          third-party cloud storage services which introduce friction, privacy
+          concerns, compatibility limitations, and workflow interruptions. In
+          professional environments such as meetings, classrooms, and team-based
+          workspaces, quickly distributing data to multiple devices should be
+          seamless and secure. However, current solutions either depend on
+          centralized cloud services or are restricted to specific operating
+          systems. This project introduces ProxSy, a gesture-controlled,
+          peer-to-peer data transfer system that enables cross-platform
+          clipboard sharing over Bluetooth Low Energy (BLE) connection. By
+          combining local device discovery, secure TCP communication, and
+          computer vision-based hand gesture recognition, ProxSy allows users to
+          initiate and confirm data transfers through intuitive hand movements.
+          The purpose of this project is to eliminate unnecessary intermediaries
+          in local file exchange between local devices.
+
+          The project documentation can be found <a href="/proxsy/index.html" target="_blank">here.</a>
+        </p>
+        
+      </div>
+    </main>
+    <script src="toggle_theme.js"></script>
+  </body>
+</html>
